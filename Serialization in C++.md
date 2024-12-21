@@ -1,0 +1,9 @@
+# Serialization in C++
+
+To learn how to serialize objects in C++, I intend to write a simple program that I can then reference when I implement serialization into QG.
+
+It seems that, according to [this]https://www.geeksforgeeks.org/serialize-and-deserialize-an-object-in-cpp/) GeeksForGeeks article, object serialization is slightly more manual in C++ than Java, but ultimately not wildly difficult. You need to include <fstream>, for reading and writing to files. And you need to define both a serialize method, and a deserialize method in the class you are aiming to serialize. For simplicity, I have copied the linked example code and will step through the code to see how it works.
+
+After walking through the example code provided, it turns out that there is even less effort needed as a developer to implement serialization than I thought. Much of the code from G3G is (I assume) good practice file IO, and there is a single method that writes the object to a file. Now, the way this example is laid out, there is no way to write multiple objects to the same file, which would largely defeat the purpose of storing data in a file, though I expect that the tutorial also shows an example of this.
+
+The G3G example infact did not show an example of this. I know that Raylib does include a number of things for File system operations, but I have yet to look closely at them, and how easily I can adapt them for my purposes. My aim is to be able to read and write the entire graph with a single method called from within main(). Given that I only ever plan on running this on my own hardware, and have no intention of cross-platform uses, I will probably leave this as fairly restricitve to Windows for file searching. That said, later implementations will want the ability to read and write multiple graphs, for now I will want to start with a single graph in a single place, meaning I will want a single "FILE_NAME" constant that the program uses.

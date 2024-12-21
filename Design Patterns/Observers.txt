@@ -1,0 +1,8 @@
+It is often times helpful to have one system talk to one or more other disconnected systems. And placing code directly into the base system can massively complicate its operation to account for this communication.
+
+An Observer framework is the answer.
+When an object needs to send a message out about an event that has occured, the object can make a call to a Subject, which manages all Observers (ie. a list of them). How that list is managed is an implementation question, which may be important depending on the speed of things.
+
+Observers must be added to the Subject by other classes on start up in order to recieve information.
+Classes that need to recieve information must extend the Observer class, in order to be notified.
+And when a relevant Signal is passed to an Observer (which should maybe be on its own thread, or at least separate from things like UI and Physics), the Observer must check to see if this is an entity and event that is relevant to itself, and take action if necessary.

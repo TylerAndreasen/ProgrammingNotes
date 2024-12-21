@@ -1,0 +1,1 @@
+A folder to store tips and tricks for programming in general, and specific frameworks or other useful concepts.
