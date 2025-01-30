@@ -11,7 +11,7 @@ Things are not so simple in C++. At this time, I would understand the following 
 * The Header File: A header file (specified by name.h) in C++ defines the major components that will be within another name.cpp file. From what I read in a single StackOverflow post, these exist largely for the benefit of the linker, a component involved in compiling C++ code into machine instructions. NOTE:: Header files should contain everything that the `.cpp` file does that is not implementation. Methods have no bodies (ended with a `;`), and parameters are a comma-separated-list of types, with or without names, variables and fields are given types and names but not values, unless those values are `static` and `const`.
 * The New File: The final component of using a new file in your main file is making the new file and writing code inside it. IMPORTANT:: Both the .cpp file in which code is to be referenced within and your name.cpp file must contain `#include "name.h"`.
 
-NOTE:: While not mentioned explicitly, I have come across information that would suggest rules for the use of angle brackets and double quotes in include declarations. Namely, I will use angle brackets for native C++ headers only, and use double quotes for secondary library and project headers.
+NOTE:: While not mentioned explicitly, I have come across information that would suggest rules for the use of angle brackets and double quotes in include declarations. Namely, I will use angle brackets for native C++ headers only, and use double quotes for secondary library and internal header files.
 
 ### **1.1 Classes Across Files**
 
@@ -29,14 +29,14 @@ NOTE:: I spent several minutes trying to diagnose why a method I pasted into bot
 At times it is easier to implement a test of some functionality or idea in a single file, which contains all of the code for the class, and the main() method which will operate on the code. There is a time and a place for this approach to development in C++ but I find myself tiring of the hassle that comes along with moving from a single file to multi-file implmentations of the idea, especially as I do not intend to create separate solutions when doing this sort of shift (though perhaps I should if I ever take this approach again). 
 There are a few sources of frustration when making the move from a single file to multiple.
 1. Method Declarations:: When implementing a class in a single file, the class can contain every element it needs to function as a class. When following language standards for C++, the header file contains essentially a series of sections of the original implmentation, while the new `.cpp` file contains everything the old file did, minus the class declaration, plus the `#include "relevant.h"`, plus the token `ClassName::` preceeding every method declaration that is implemented the `.cpp` file. (See:: OOP may imply that not all methods declared by the header file are implement by a `.cpp` file of the same name. As such methods may need different implementations for different subclasses, though I am unsure how to implement a subclass at this time.)
-2. Type Shenanigans:: As mentioned in *1.1 Classes Across Files*, (I believe) link-time issues can occur when needed types (string, vector) are included in the `.cpp` file using them extensively, but are not included in the header file which includes those types in the parameters and class members. I do find it slightly strange that there is not an early error message for this in Visual Studio. This however may be the result of my not understanding when that sort of check can be done in the journey from source code to on-screen execution.
+2. Type Shenanigans:: As mentioned in *1.1 Classes Across Files*, (I believe) link-time issues can occur when needed types (string, vector) are included in the `.cpp` file using them extensively, but are not included in the header file which includes those types in the parameters and class members. I do find it slightly strange that there is not an early error message for this in Visual Studio. This however may be the result of my not understanding when that sort of check can be done in the journey from source code to execution.
 
 ### **2. TODO C++ Style Guide**
 
 This section is dedicated only to the style of C++ as a language, not the function of the parts described.
 
-1. Defining Classes : Classes in C++ are fully defined in two parts (just as variables are). And this takes the form of two parts: the header file, and the implementation file. This separation of definitions creates a huge flexibility that I do not fully grasp the consequences of, as header files can be defined in one place for basic behaviors, and local implementations can be made in files that are not a solely dedicated to that class definition.
-    1.  The Header File supplies class member declarations. Variables and fields are defined by their types, modifiers, and names. Functions and Methods are defined by their access modifiers, return types, names, and parameters. The Header File also seems to be the intended place for constant class variables. Given the nature of C++ compilation, care must be taken with how header files are used and defined. It is quite easy to define a simple header file, try to use it and get compile errors. This is because a class definition can only exist once within what the linker is aware of, which is easily broken if a header file is included in both the implementing class file and the main() file. See the below alert for more information about how to
+1. Defining Classes : Classes in C++ are fully defined in two parts (just as variables are). And this takes the form of two parts: the header file, and the implementation file. This separation of definitions creates a huge flexibility that I do not fully grasp the consequences of, as header files can be defined in one place for basic behaviors, and local implementations can be made in files that are not a solely dedicated to that class or subclass definition.
+    1.  The Header File supplies class member declarations. Variables and fields are defined by their types, modifiers, and names. Functions and Methods are defined by their access modifiers, return types, names, and parameters. The Header File also seems to be the intended place for constant class variables. Given the nature of C++ compilation, care must be taken with how header files are used and defined. It is quite easy to define a simple header file, try to use it and get compile errors. This is because a class definition can only exist once within what the linker is aware of, which is easily broken if a header file is included in both the implementing class file and the main() file. See the below alert for more information about how to avoid this in the header file itself.
     2. The Implementation File supplies the runnable code that is executed. All code within this file must have a declaration within the header or will cause a compile error. Note: It is convention with C++ to create paired header and implementation files, for which the latter implements all members of the former. It is possible however to implement members in multiple files, varying the implementation in each. And it is one of the greatest strengths of C++ (from what I would understand) to create multiple implementations in different translation units. Allowing classes to be given a structure in one place, and have the implementation vary based on use case (including things like variations of NPC AI).  
 
 > [!IMPORTANT] 
@@ -57,9 +57,9 @@ This section is dedicated only to the style of C++ as a language, not the functi
 >
 > It is important to note here the style used of defining the header. The name of the header is in all caps, with underscores to indicate spaces, and a trailling `_H` to indicate the symbol is defining a header. See `Addmission` below.
 
-2. Using Files and Classes : Referencing code, including classes, across C++ files is not as simple as it is in Java, for example. In order to reference code outside the present file, you must place an include statement at the top of (or at least inside) the relevant C++ file. The include statement for the native iostream class (handles console IO) is `#include <iostream>`. The `<>` specify that the code is not local or specific to the program you are writing, but is a library file (be it native C++ or an outside library being used by your program). To reference a header file defined within your program use a line with the structure `#include "headerName.h"`. The use of double-quotes and a `.h` file type specify that the header is within your program. Further the double-quote syntax (AFAIK) allows for defining relative roots from the current file to the location of the header file being included allowing for both version control and careful code management.
+2. Using Files and Classes : Referencing code, including classes, across C++ files is not as simple as it is in Java, for example. In order to reference code outside the present file, you must place an include statement at the top of (or at least inside) the relevant C++ file. The include statement for the native iostream class (handles console IO) is `#include <iostream>`. The `<>` specify that the code is not local or specific to the program you are writing, but is a library file (be it native C++ or an outside library being used by your program). To reference a header file defined within your program use a line with the structure `#include "headerName.h"`. The use of double-quotes and a `.h` file type specify that the header is within your program. Further, the double-quote syntax (AFAIK) allows for defining relative roots from the current file to the location of the header file being included allowing for both version control and careful code management.
 
-3. Describing Code Blocks : At this time, I do not know much about the standard ways to go about commenting C++ code properly. Visual Studio does seem to allow the use of a`/**/` block before a Class or Variable to document it, though I am unsure if this is proper procedure. 
+3. Describing Code Blocks : At this time, I do not know much about the standard ways to go about documenting C++ code properly. Visual Studio does seem to allow the use of a`/**/` block before a Class or Variable to document it, though I am unsure if this is simply not the proper procedure for C++. 
 
 4. Equality Testing : Deriving from C, C++ allows ints to be used as booleans for equality testing. This means that statements like `if (x = 0)` will assign the value of `x` to `0`, read the value `0` within `x` as false, and not execute the block. This is likely to occur when the intent was `if (x == 0)`. This problem gives rise to the style of placing constant values before variables in equality tests: `if (0 == x)`. As mistyping this with only one equals creates a compile error. 
 
@@ -86,12 +86,12 @@ I have seen discussion online about how best to go about interacting with the co
 
 These suggestions seen and noted, I have two other options I am aware of at this time:
 
-1. Include a `using std::cout;` declaration. This allows me to simply type `cout` to write to the console with out shoving every part of the standard library into the build, sidestepping problem 1, while not having to engage with problem 2. This can be made more useful when the line is expanded to become `using std::cout, std::endl, sted::cin;`. This syntax allows `cout`, `cin`, and the constant `endl` to be used without the `std::` prefix. NOTE:: The multiple using declaration shown to apparently requries version 17 of C++, which I do not have installed or configured for this project, individual `using` declarations can be used.
+1. Include a `using std::cout;` declaration. This allows me to simply type `cout` to write to the console with out shoving every part of the standard library into the build, sidestepping problem 1, while not having to engage with problem 2. This can be made more useful when the line is expanded to be `using std::cout; using std::endl; using sted::cin;`. This syntax allows `cout`, `cin`, and the constant `endl` to be used without the `std::` prefix. NOTE:: The multiple using declaration shown to apparently requries version 17 of C++, which I do not have installed or configured for this project, individual `using` declarations can be used.
 2. Hotkeys: I could, with a bit of time, implement C++ specific hotkeys that allow me to type longer instructions with a few keys. Implementing hotkeys for the full printing or reading statements could dramatically speed up my C++ development process, and push me to build more hotkeys for this machine.
 
 ### **5. Argument List**
 
-I have just discovered something quite strange about arguments. Whatever compiler I am using apparently does not allow comma separated arguments to lack spaces between a comma and the subsequent arguement. While it is much easier to read a program when this is not the case, I was surprised to find that a compile error was generated.
+I have just discovered something quite strange about arguments. Whatever compiler I am using apparently does not allow comma separated arguments to lack spaces between a comma and the subsequent arguement. While it is much easier to read a program when this is not the case, I was surprised to find that a compile error was generated, instead of just a style issue shown by the IDE.
 
 ### **6. Identifiers**
 
@@ -176,20 +176,16 @@ Despite this, the Ball class was defined as follows.
 
     float Ball::getY() const { return this->y; }
 
-While the keen-eyed, or at least C++ fluent may know the issue immediately, it me took on the order of hours over a few days to find the issue. In this case, creating the header definition called `ball` in `ball.h` was taking priority over the argument `Ball ball` within the method `void CPUPaddle::Update(Ball ball)`. Upon changing the definition to `BALL_H`, as seems to align with the C++ style guide, the program did not run into compile errors and displayed the game in an incomplete state. Though I stopped it to write this before I investigated the current behavior of the game (See also, I have commented out other code that was cauing problems, likely also resolved by this change, to focus on this first).
+While the keen-eyed, or at least C++ fluent, may know the issue immediately, it me took on the order of hours over a few days to find the issue. In this case, creating the header definition called `ball` in `ball.h` was taking priority over the argument `Ball ball` within the method `void CPUPaddle::Update(Ball ball)`. Upon changing the definition to `BALL_H`, as seems to align with the C++ style guide, the program did not run into compile errors and displayed the game in an incomplete state. Though I stopped it to write this before I investigated the current behavior of the game (See also, I have commented out other code that was cauing problems, likely also resolved by this change, to focus on this first).
 
-### **7. Headers and Include Statements**
-
-I am currently facing an issue that revolves around me not understanding how to use header files in small, multi-file projects. While I have seen tutorials cover the basics of C++ code, and the need for header files, I am yet to find out what 
-
-### **8. C++ for a Java Dev**
+### **7. C++ for a Java Dev**
 
 https://blog.scottlogic.com/2021/04/22/losing-the-fear.html
 
 I cannot help but get an incredibly stuck up vibe from this article, but would like to spend some time to try to take it at face value. Pointers have not been super necessary, references sound nice but don't seem necessary as I can pass things as usual (the CPUPaddle is moving as expected),
 
 
-### **9. Arrays**
+### **8. Arrays**
 
 Arrays have caused me some trouble in C++ and intend to do some watching of videos to help smooth out the process. The below examples are the working examples only.
 
@@ -204,13 +200,13 @@ cout << arr[0] << endl;
 cout << arr[7] << endl;
 ```
 
-This first example is pretty straight forwards. We define an array of size 5 according to the variable `x` and initialize the set of values `{1,2,3,4,5}`. Then we access the value at index `0` and reassign it to the value `10` before printing the value. Line 5 of the above does generate a warning Visual Studio but does not crash or throw an error, inline with C++ lacking run-time out of bounds checking. Further, this will return garbage, as data fetched is not even necessarily being used by the program and isn't meaningful. Therefore, care must be taken to always access elements within an array's bounds (or not if you are trying to steal data).
+This first example is pretty straight forwards. We define an array of size 5 according to the constant variable `x` and initialize the set of values `{1,2,3,4,5}`. Then we access the value at index `0` and reassign it to the value `10` before printing the value. Line 5 of the above does generate a warning Visual Studio but does not crash or throw an error, inline with C++ lacking run-time out of bounds checking. Further, this will return garbage, as data fetched is not even necessarily being used by the program and isn't meaningful. Therefore, care must be taken to always access elements within an array's bounds (or not if you are trying to steal data or crash programs/devices).
 
 Note:: The initializer line of the above does not actually need the `x` or `=`to compile, as the size can be infered/implied by the compiler based on the initialization. I am completely unable to determine how to use separate declaration and initialization lines for arrays in C++. And later information suggests that this is not possible in the manner I desired. Separate initialization of an array in C++ must either happen inline with the declaration or on separate lines for each individual values, you cannot assign multiple values in the same statement.
 
-### **10. stl::vector**
+### **9. stl::vector**
 
-At the time of writing these words, I have been told that it is often the case in C++ that a std::vector is the more appropriate structure for data in C++. I get the vibe that these are more similar to Java ArrayLists, but I really don't know.
+At the time of writing these words, I have been told that it is often the case in C++ that a std::vector is more appropriate structure than an array for data in C++. I get the vibe that these are more similar to Java ArrayLists, but I really don't know.
 [Video](https://www.youtube.com/watch?v=VNb3VLIu1PA&t=509s)
 Understanding 1: I was at least partially wrong about by intuition (at least as far as I remember Java's AL<>). The stl::vector class defines a list that is stored in contiguous memory (the main thing that I believe is different in Java), is of a fixed size, but will resize itself to a more appropriate size when necessary. The 'contiguous memory' feature reduces the access time of elements.
 
@@ -237,7 +233,7 @@ Declaration of a vector is pretty simple, and I suspect cannot (or it rarely mak
 Initialization can be done via the `push_back()` method. This adds an element to the currently last unused element in the vector. If the vector is full or close to full, the vector will expand itself in memory. I use the word can, as I suspect there are methods like `push_front()` or `push(<type>, int)` which allow for different assignments to locations in memory.
 Access can be done very simply with the same for each syntax as Java. The `for (<type> name : vectorName)` is very handy, though does not allow for an innate index the way a loop on a normal array would. This issue can of course be sidestepped by declaring an index variable that gets incremented each iteration through the loop.
 
-### **10.1 Iterators**
+### **9.1 Iterators**
 
 Iterators are handy tools to run over vectors (amoung other things probably) that ease the looping process. Some sample code can be found below.
 ```c++
@@ -294,7 +290,7 @@ Here are several other methods available for C++ vectors.
  - `at(int)` - Access the element at the provided value (identical to above)
  - `front()` - gets the element of the vector at index `0`.
  - `back()` - gets the element of the vector at the maximum used index/the maximum index of the vector
- - `clear()` - Sets the size of the vector to 0.
+ - `clear()` - Sets the size of the vector to 0 (dropping reference to all data).
 
 SPECIAL::
 Insert, Erase, Pop:
@@ -315,9 +311,9 @@ These seem useful, if more situational. Despite what I suspected, there is not a
 
 Understanding 2: After following along with the video, vectors are probably going to be my go to for most list applications. There will absolutely be times where an array or an enumeration is more appropriate, but the flexibility and ease of use of a vector is to great to pass up.
 
-### *11 STRINGS!**
+### *10 STRINGS!**
 
-I have done a bit with strings in my initial experiments in QuickGraph, and realize that I really do not have a good handle on them. I initially had the first of the two below code snippets in my `Vertex.cpp ` file, and changing to the later fixed what appeared to be problems recognized by some very low level C++ language code for supporting strings.
+I have done a bit with strings in my initial experiments in QuickGraph, and realize that I really do not have a good handle on them. I initially had the first of the two below code snippets in my `Vertex.cpp ` file, and changing to the latter fixed what appeared to be problems recognized by some very low level C++ language code for supporting strings.
 
 ```c++
 int Vertex::assignText(string in)
@@ -357,11 +353,11 @@ int Vertex::assignText(string in)
 
 At the time of writing I am really quite unsure about how I should be handling strings in C++. There is more I could say here, but I don't think it means very much, and will say only, I need to learn more.
 
-### **12. Method Signitures**
+### **11. Method Signitures**
 
 I have discovered that C++ is quite strict (despite some seemingly unnecessary flexiblity) about its method signitures. Namely where the `const` keyword can be placed. As far as I have experimented, the `const` keyword can be placed immediately before or after the method name in the declaration. But, the keyword must then be in the same place in the implementation, the two keywords cannot be in different places. I am yet to try to place the keyword differently relative to other method keywords, as I am not fully awake yet and it is not massively important. 
 
-### **13. What's the deal with & *?**
+### **12. What's the deal with & *?**
 
 I realize that while I have a sense of the reference and pointer operators, I don't have nearly as good a handle on them as I should. So I intend to fix that. See the below samples to see what I have learned.
 
@@ -390,7 +386,7 @@ cout << "&delta: " << &delta << endl;
 
 2. Pointers:
 
-Pointers are related to aliases, but not the same. Where aliases allow multiple names to be given to the same data (calling my step brother Smurf instead of his acutal name). While pointers store a number which is the location in memory of the variable being considered. This principle is not complicated but using them correctly and effectively may be beyond the scope of what I can achieve at almost 5am.
+Pointers are related to aliases, but are not the same. Where aliases allow multiple names to be given to the same data (calling my step brother Smurf instead of his acutal name). While pointers store a number which is the location in memory of the variable being considered. This principle is not complicated but using them correctly and effectively may be beyond the scope of what I can achieve at almost 5am.
 
 The below code shows about what I expected. The value in `alpha` is the assigned `7`, and the address of `alpha` is accessible with the `&` operator. Further, the value in the variable `charlie` is equal to the address of `alpha`. And the address of `charlie` is different from the address of `alpha`.
 
