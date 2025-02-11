@@ -5,5 +5,5 @@ I realized while reading the `Config.java` and `ExampleMod.java` files that to s
 1. Add the method `commonSetup()` to the NeoForge `modEventBus`. I would understand this to be an example of the Event/EventListener pattern that I learned in relation to other gamedev engines.
 2. Register the previously created Blocks, Items, and Creative Mode Inventotry Tab to the `modEventBus`.
 3. In the case that the implemented class has functions annotated with `@SubscriberEvent` (ie, is listening for events), register the instance of the mod class with the NeoForge Event Bus.
-4. Register Items and Blocks to the mod's Creative Mode Tab (note: the example Mod does not do this, likely to show an interested developer the difference.)
+4. Register Items and Blocks to the mod's Creative Mode Tab (note: the example Mod places the item in the custom tab, while the block goes into building blocks, likely to show an interested developer the difference.)
 5. Register the Mod with NeoForge so that the mod and it's config file can be loaded by NeoForge.
