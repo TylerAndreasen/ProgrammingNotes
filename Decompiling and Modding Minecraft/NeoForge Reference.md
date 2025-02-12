@@ -26,10 +26,18 @@ While I suspect it will be a huge pain, the use of translation tables will be a 
 }
 ```
 
-### 3. What is a Resource Location?
+### 3. Texture Issues
+
+One of the most troublesome issues I have faced in the earlies stages of mod development is getting a texture to properly apply to an item, and I have learned for sure exactly one thing:
+    Ensure you are always saving an image file with the extension `.png`, not simply typing out the needed extension in the file name bar.
+This may seem like a super obvious, but resaving the first custom texture I created allowed the texture to display. I also need to find or develop some tool to allow me to easily create partially transparent images, as the ol'reliable MS Paint does not seem to be up to the task this time. 
+
+
+### 4. What is a Resource Location?
 
 https://docs.neoforged.net/docs/misc/resourcelocation
 https://docs.neoforged.net/docs/items/
+
 
 
 ### THE END
