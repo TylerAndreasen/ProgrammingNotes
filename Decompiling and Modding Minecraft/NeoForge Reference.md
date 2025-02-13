@@ -32,6 +32,7 @@ One of the most troublesome issues I have faced in the earlies stages of mod dev
     Ensure you are always saving an image file with the extension `.png`, not simply typing out the needed extension in the file name bar.
 This may seem like a super obvious, but resaving the first custom texture I created allowed the texture to display. I also need to find or develop some tool to allow me to easily create partially transparent images, as the ol'reliable MS Paint does not seem to be up to the task this time. 
 
+Editing textures is best done in GIMP (as it is a free tool that is much more powerful than MS Paint), namely allowing the user to create transparent images.
 
 ### 4. What is a Resource Location?
 
