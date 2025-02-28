@@ -7,6 +7,7 @@
 3. What simple feature from the idea board could I implement?
 4. Does changing resource files (other than textures) get applied when only running `gradlew runClient`?
 5. How to add custom recipies with vanilla and or modded items?
+6. Emoticon Masks: This could be adorable
 
 
 Advanced:
@@ -23,7 +24,7 @@ Advanced:
 Expert
 1. Create Phantom Boss that doesn't spawn for *many* days of insomnia?
     This will almost certainly require something like blockbench and a huge amount of work learning animation, tells/queues for attacks, important engine hooks, and much more.
-2. Uncomfy Mode: All square block textures are rotated 90 deg?
+2. Uncomfy Mode: All square block textures are rotated 90 deg, crafting recipies are changed and or rotated?
     This may be best achieved in the form of a texture pack, possibly by dynamically creating and applying such at runtime if possible. Also, check MC EULA to see if distributing ripped or modified textures is chill.
 3. ?? Revert Copper bulbs to original Tick implementation?
     It will be important to note in the description for this toggle that other copper bulb builds will likely not work or break themselves if moved from one version to another.
