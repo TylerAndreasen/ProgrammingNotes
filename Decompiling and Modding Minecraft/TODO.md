@@ -1,5 +1,9 @@
 # TODO
 
+
+0. (A command line tool to do this woudl be dope) Before creating a new mod from whole cloth, I will need ot create a template that I can build future mods from. This will entail a number of overhead structures that I would like in place, such that I do not need to manually implement them every time. At this time, that template should include the base class file, a Config class, and a Content class. The base class should take the form of the base class from the tutorial/my first go at modding, with reference to the config and Content classes. Given my lack of understanding the Config class, this may remain empty, or contain functionality similar to the tutorial. The Content class (derived in name from the base class) will need to create the following deferred registers: CreativeModeTab, Blocks, and Items, each supplied with the MODID. Additionally, a DeferredHolder for the creative mode tab, and comments containing template code for creating an Item, Block, and BlockItem that can be copied to register blocks and items quickly. Also, a CL tool that accepts a name, english display name, and map color (block) which then spits out all of the default lines required to create those object would be very handy.
+
+
 1. Make the Free Sample eddible. What does it return in game?
     Lets suppose the Free Sample is a cup of coffee. It makes the most sense to craft the Free Sample in the brewing stand (unless I make a coffee pot).
     In that case, what do I use for brewing. My thought is to make a new item crafted potentially with cocoa beans, sugar, and wheat, called Instant Coffee, and use that in the ending recipie.
