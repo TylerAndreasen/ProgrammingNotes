@@ -1,0 +1,3 @@
+[submodule "BuildTools"]
+    path = Java/BuildTools
+    url = https://github.com/TylerAndreasen/JavaBuildTools
