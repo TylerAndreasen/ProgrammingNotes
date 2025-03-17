@@ -19,7 +19,7 @@ Important Files:
 Despite what I originally  realized during a overview of a project section that my instance seems to be missing important files: build.gradle.kts, settings.gradle.kts
 
 
-`gradle init`: Can be run to create (or hopefully finish) all necessary files to create a Gradle Project, but has many options I will want to note.
+`gradle init`: Can be run to create (or hopefully finish) all necessary files to create a Gradle Project, but has many options I will want to note. From what I recall, they are pretty straight forward, I ended up selecting [4, product, 1, no] as options.
 `./gradlew tasks`: Command run to list the currently available tasks. Just created projects will have very few tasks as the project contains little information.
 
 Sensibly, as I had not installed gradle, the init command did not exist. It took me longer than it should have to attempt to reopen a new terminal to let path environment variables take effect in the terminal, which resolved the lack of gradle command recognition.

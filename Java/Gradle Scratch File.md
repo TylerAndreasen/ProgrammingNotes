@@ -1,13 +1,13 @@
 
-At the time of beginning this document, I don't feel confident that I could accurately describe what Gradle is. I intend to learn enough about Gradle be able to explain in this document what Gradle is and does that someone in my position could only read this and understand Gradle.
+At the time of beginning this document, I don't feel confident that I could accurately describe what Gradle is. I intend to learn enough about Gradle to be able to explain in this document what Gradle is and does that someone in my position could only read this and understand Gradle.
 
 After a question to ChatGPT-4, I would understand Gradle to be a cross-language development automation tool: taking on the routine complexities of large software projects (fetching dependencies, compiling files into a usable .jar file, and even launching Minecraft with the mod loaded).
 
 ## Thoughts
 
 I am yet again astounded by just how troublesome trying to work with gradle and getting into building mods can be. I must remind myself that I am towards the end of my day and have put a lot of work in, so what I am truly capable of is not necessarily reflected in my current performance. I do still intend to continue with this project, but there are three changes I intend to make before continuing:
-1. Be well rested: I am having quite a lot of trouble with this project because I am quite tired and have not had coffee in hours. Having some rest, caffiene, and a positive attitude should make this process a lot more bearable, though time and effort will still be required (which I need to help the leanring stick).
-2. Use MS Edge to watch tutorial videos: As much as I would like to avoid the tracking of a browser like edge, I would also like to be able to watch a video for more than three minutes. Further, I should be taking notes as to what the tutorial is doing (ignoring things like deleting the comments in sample mod files, though there is quite a bit of it it seems).
+1. Be well rested: I am having quite a lot of trouble with this project because I am quite tired and have not had coffee in hours. Having some rest, caffiene, and a positive attitude should make this process a lot more bearable, though time and effort will still be required (which I do need to aid in learning the important ideas and making them stick).
+2. Use MS Edge to watch tutorial videos: As much as I would like to avoid the tracking of a browser like edge, I would also like to be able to watch a video for more than three minutes. Further, I should be taking notes as to what the tutorial is doing (ignoring things like deleting the comments in sample mod files, though there is quite a bit of that it seems).
 3. After I have an understanding of what I am doing and doing wrong, decide on a simple feature I would want to implement first. KISS: A block with a unique texture and no functionality. Or possibly an item, it may be the case that an item that cannot be placed on the ground is simpler to implement than a block, though I do not have suffecient context at this time to know.
 
 
