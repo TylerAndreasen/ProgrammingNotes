@@ -1,6 +1,6 @@
 # Unix Command Line
 
-Important Commands
+Important Commands for the Ubuntu VM I am running in VirtualBox.
 
 - ls : lists files and directory in the working directory
 - pwd : prints the working directory
