@@ -73,4 +73,55 @@ I am aware of the concept of Events and Listeners in general and think it is hig
 
 While setting up a class to manage my first modded block in Minecraft, I realized that creating separate classes for items and blocks 1) separates out what I conceptualized as highly distinct concepts, and 2) creates a requirement that multiple DeferredRegisters for Items must be created, as it only makes sense that any block in the world has an associated Block_Item which can be in the player's inventory. While I see the former as following general practice guidelines for Java, the latter creates logistical issues that I would rather avoid. That being either I have two Deferred registers for Items, or I register Block_Items in the Item class, assuming the DeferredRegister for Blocks is/can be created first. Given this, I will be moving Items and Blocks into a single class, I plan atm to call this something like `ModContent`, which is separate from the mod's primary class. This separation is largely a style choice, as I find the tutorial mod somewhat overwhelming in the amount of information that is stored solely in the primary class. Further, I intend to break future functionality out into specific classes later, as more interactive/functional blocks will require additional data and code. And as such I would like to specify such additional behavior and data in separate classes when appropriate. I should also note, that there probably should still be a central place that Items and Blocks are registered from, and only the functionality that requires outside code (ie, features that vanilla or NF options don't allow) goes into outside classes.
 
+
+### 9. Mod Integration
+
+Keywords: other, integration, recipe,
+
+In time I suspect this will be a not small portion of this document, but I came across key information related to this. When creating recipes for items, it is possible to create a "neforge:condition" item inside the json for the item. Supplied to this tag is a list of conditions, which can include whether other mod are or will be loaded. For more information see this [link](https://docs.neoforged.net/docs/resources/server/conditions/).
+
+
+### 10. Custom Recipes
+
+After just a brief time reading about recipes, I have realized they are far more complicated than I realized and I will want thorough notes in future. The docs imply that three things will be required to implement any custom recipe. After doing slighly more digging, it appears the Custom Recipe documentation is for more advanced situations (ie custom tables/crafting interfaces).
+
+
+### 11. Implementing Basic Recipes
+
+Recipes in Java are data driven and seem to be define in `[modroot]/resources/data/[modname]/recipe/`. Implementing basic recipes in JSON is actually quite straight forwards. An example for the Iron Pickaxe is provided and will be thusly explained.
+
+```json
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "key": {
+        "#": {
+            "item": "minecraft:stick"
+        },
+        "X": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "pattern": [
+        "XXX",
+        " # ",
+        " # "
+    ],
+    "result": {
+        "count": 1,
+        "id": "minecraft:iron_pickaxe"
+    }
+}
+```
+The type param determines whether the recipe is shaped in the Crafting table/inventory or not, or states what other converter is used to access the recipe.
+I get the sense that the category param determines the categories that show up when hovering the item in creative, though this could also be in reference to the Creative Mode tab the item appears in (despite that being defined when the item is loaded in code).
+
+The key param defines characters that will be used in the recipe pattern and associates them with the ingredients that are to be used in the recipe. Note: This was initially not correct in my notes because each character must be related to another object which relates the token `item` to the value being used. It may be worth while to find or build a tool that will generate these files for me. Possibly a java command line tool.
+
+The pattern param defines the (assumed) 3x3 layout of items to be used in the recipe. This is read to require the ingredients listed in the key in the places within the pattern. In the example, iron ingots and sticks are used to craft an iron pickaxe in the arrangement any player knows.
+
+Finally the result param defines what the output of the recipe is. The count and id params define a new ItemStack that will be made available to the player if they actually elect to craft the item.
+
+Despite following advice from this [link](https://docs.neoforged.net/docs/resources/server/recipes/builtin/#the-crafting-mechanic) and this [video](https://www.youtube.com/watch?v=rcgDrO627II&list=PLKGarocXCE1G6CQOoiYdMVx-E1d9F_itF&index=5), I am not currently able to craft the inverted tuff bricks.
+
 ### THE END
