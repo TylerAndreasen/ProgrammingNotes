@@ -1,6 +1,6 @@
 # Learning CUDA
 ## Preamble
-I intend to learn to write in CUDA (which I often type as CUDE, so correct this in your mind if anyone else does ever read this). My first major project in it will be an attempt to generate n-polyominos, shapes made out of n squares. As a practical example, the 4-polyominos are the pieces used in Tetris. Though Tetris uses mirror versions of some pieces presumably to improve overall gameplay experience, the algorithm I will eventually write will collapse mirrors and rotations of pieces into one entry, so the result of the n=4 should be 5 instead of the 7 game pieces. After this 2-D version, I intend to write a 3-D version as well. This will be more complicated but more reachable with the 2-D version under my belt.
+I intend to learn to write in CUDA (which I often type as CUDE, so correct this in your mind if anyone else does ever read this). My first major project in it will be an attempt to generate n-polyominos, shapes made out of n squares. As a practical example, the 4-polyominos are the pieces used in Tetris. Though Tetris uses mirror versions of some pieces, presumably to improve overall gameplay experience. The algorithm I will eventually write will collapse mirrors and rotations of pieces into one entry, so the result of the n=4 should be 5 instead of the 7 game pieces. After this 2-D version, I intend to write a 3-D version as well. This will be more complicated but more reachable with the 2-D version under my belt.
 
 > IMPORTANT:: I have learned that necessarily or optionally CUDA uses C/C++ as its interface and is perhaps not its own language as I assumed.
 > I intend to follow [this](https://developer.nvidia.com/blog/even-easier-introduction-cuda/) guide to CUDA at least for now. This information does mean that I am already largely familiar with the syntax and ideas needed to implement things. Though I will need the CUDA Toolkit.
@@ -12,7 +12,7 @@ B. Language Familiarity: I need to have some knowledge of how to do things in CU
 C. Linting: I have learned that linting code is incredibly important for my learning and interacting with code, so I will need to make this possible in whatever editor I use.
 
 
-For Point B, The following are the pre-meditated things I will need to know how to do and should serve as a framework for where I take notes on how to do those things.
+For Point B, The following are the pre-meditated things I will need to know how to do and should serve as a framework for where I take notes on how to do those things. Later Note: This is now largely irrelevant, as my familiarity with C/C++ makes these point muut, but reminds me that there are a great number of things I will need to do to interface correctly with CUDA correctly.
 
 1. Hello World
 2. Create variable

@@ -5,7 +5,7 @@ From scratch, I know there are a number of difficulties with trying to achieve s
 One difficulty is the fact that a shape may be generated and already exist in some other rotation or reflection within the list of known shapes of the given size.
 Another is encoding the idea of a poly cube in an effecient way. To save memory space, it may be worth while to trim the representation to fit, but this takes time, and depending on the language and implementation used to write it, may not be meaningful. (If defining byte arrays in something like C, trimming a shape with n = 5 down within a 8^3 byte array does not do anything.) This does then bring up the idea of creating a system which stores a linked list of bytes that are associated with dimension information such that a shape can be represented in as few bytes as possible. A 3x3x2 would require only 2 bytes, but notably more complex indexing logic based on the low size. Maybe this is worthwhile, maybe not.
 
-# Resources
+## Resources
 
 Alongside the link above, what follows is a list of resources I found while researching and working on this project.
 [A](https://www.youtube.com/watch?v=g9n0a0644B4) - The original video that sparked my curiosity.
@@ -34,6 +34,12 @@ My initial thought is CUDA, a language created to interface with NVidia GPUs, of
 7. Copying and Reassigning Variables
 8. Matrix operations
 9. Conditionals and Loops
+
+
+The above list will need to be replaced with CUDA and multi-threading specific tasks. There are things I have realized since begin this project:
+1. I need to run some tests on memory related features. Namely, is it more effecient (in general or specific cirumstances) to copy memory from the CPU to a kernel, or to `cudaMalloc` and allow CPU and GPU cores to operate on the same memory.
+2. I should consider recursion as a potential tool. Depending on how exactly I write this program recursion maybe helpful, though I am unsure how much. I am yet to put much time into this, though most certainly should consider it.
+3. I should perhaps attempt the 2-D iteration of this project in Java before trying it in CUDA. This is simply because I know the language better and am likely to come across issues earlier, and have plans in place for them before implementing in CUDA.
 
 ## Initial Plan
 Before doing a ton of research, I thought I would express some general thoughts as to how I might go about this.
@@ -148,3 +154,7 @@ Pad (shape)
     }
     return shape
 ```
+
+## The End
+
+This section exists as a buffer to allow adding elements below a long, folded element above this. 
