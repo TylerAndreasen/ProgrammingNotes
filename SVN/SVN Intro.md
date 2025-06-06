@@ -1,0 +1,7 @@
+# Introduction to SVN
+
+SVN or Subversion is a version control system, which I believe pre-dates git and should be at least a feather in my cap if it is never actually of use to me.
+
+[This](https://www.youtube.com/watch?v=urr0CAp_CMY) video suggests that TortiseSVN is a good option for Windows users, I will want to find a quality option for Unix whenever I start double booting.
+
+NOTE:: One thing I did not quite understand about SVN when I started this project is that the basic use case is different thatn that of Git. Git allows any number of users to maintain equally valid copies of all files in all branches within a repo. This is done by maintaining a single "cannonical" version of the repo, and then applying masks to the parts that have changed as commits and branches are made. SVN is an example of Centralized Version Control, there is a single "cannonical" copy of the repository on a remote server that maintainers checkout parts of when they work on the code base. Further, SVN manages branches by cloning the entire root into an adjacent directory. I have not fully contemplated the ramifications of this, though my first reaction is that it seems somewhat wasteful and is a potential trap for users from Git.

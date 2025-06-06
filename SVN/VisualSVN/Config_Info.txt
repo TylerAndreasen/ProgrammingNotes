@@ -1,0 +1,1 @@
+From what I read, VisualSVN is not actually necessary if operating on a single device as I am now.

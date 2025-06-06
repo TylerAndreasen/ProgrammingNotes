@@ -403,3 +403,11 @@ cout << "&charlie: " << &charlie << endl;
 ```
 
 3. MOAR
+
+## **13. GOTO**
+
+I have learned today that C has a native `goto` statement which can be used as it would in any assembly language. Given the nature of the language, I am unsure that I will use it much in plain C projects, but it is a useful piece of knowledge.
+
+## The End
+
+This section exists to give a small bit of text below the last collapsed section of the document. Nothing interesting is written here.
