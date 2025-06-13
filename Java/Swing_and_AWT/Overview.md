@@ -24,3 +24,11 @@ One of the quickly useable interactable elements of SA is the `JButton` class wh
 
 
 One concept that I do not have answers on is how I implement a wrappers for multiple SA objects. Another is how I dynamically add elements to a list.
+
+## PASTE
+JFrame is the object which addresses the whole of the visual program, things like setDimensions, setTitle, and more work as expected.
+
+setVisibility must be passed (true) to make the program visible to the user (a dumb thing to me but here we are)
+
+setDefaultCloseOperation() - By default the X button on the window will not kill the actual program only hide it, this is important and reminds me that this is important, what needs to happen when the program is killed?
+

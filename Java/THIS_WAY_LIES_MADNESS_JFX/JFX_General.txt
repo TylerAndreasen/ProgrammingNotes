@@ -1,0 +1,3 @@
+Notes:
+
+Scripts assigned to actions from JFX Objects must have their associated scripts be 'public' not 'private'.

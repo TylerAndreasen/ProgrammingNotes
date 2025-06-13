@@ -1,0 +1,11 @@
+GraphEdit : The environment which graphs are made in.
+
+GraphElement : Not to be used directly as it does not support connections, parent of GraphNode.
+
+GraphNode : Verticies in a text focused graph. There may be possible style changes that allow for a more visual graph, but I will get there in time.
+
+	In order to create connections between nodes. at least one child must exist, I am using Labels for simplicity. Each child node (seemingly any Control node should work), has a 'Slot' associated with it. This slot then has left and right (input and output) connections associated with it. And each of those connections can be toggled individually on each child of the GraphNode. This is quite clever.
+
+	Note 1: I am able to drag a line from the sides of the Graph nodes and they will snap to opposite type connections, but when I release the mouse, the line disappears, I did also try hitting Enter after the line snapped and the same behavior occured. So my next step will be to figure out how to allow a user to connect existing nodes together.
+
+	Note 2: The Slots and Ports on GraphNodes deserve mention here. Each GraphNode has a number of Slots equal to its number of children (or at least Control Children). Each slot has toggle able Left and Right (or input and output) ports. But the numbers associated with each are a tad confusing. Each slot has the next numeric value, first is 0, second is 1, and so on. And the ports also count up, but only for those that are enabled on the GraphNode. In the GraphNode1 of the GraphTime example project: Slot 0 has its left and right ports enabled, making them the 0 ports for input and output. Slot 1 has neither enabled and there are no port values associated. Slot 2 has only it's right port enabled, making the right port of Slot 2 have an index of 1. A similar situation occurs for Slot 3 on the left. And Slot 4 has both enabled, meaning both Ports are index 2. The implication of this behavior to me is that 1. thought and care will be required to create intended behavior, 2. one will probably need to initially address the Slot, then ask for it's particular side port, then operate as needed. Though it may be more common to be operating from know the port number and need the associated slot.

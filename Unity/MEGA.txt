@@ -1,0 +1,34 @@
+.GetComponent<T>()
+
+The GetComponent<T>() method returns the first object with the type specified by whatever replaces T in the call. This is used to reference any Component of a game object which is not the Transform of the object that the script is attached to.
+	This is how I reference things like scripts in, other GameObject's components, and the like other scripts.
+
+
+Instantiate()
+
+A method which allows the creation of a new GameObject via code (ex. the player presses left-click, and a bullet comes out of their gun). There is one catch in that the method, if passed nothing but a prefab, the object is created at the origin.
+
+
+
+Prefabs and Rendering
+There are two parallel systems for rending things in Unity. The Canvas and the Camera. The Camera acts as a pretty standard game camera. The Canvas is a separate entity used to display the various UI elements (Buttons, text, et cetera.0). The Canvas is not capable of Rendering things like Sprites, which is what I was attempting to do, not really thinking about that distinction.
+
+
+Next Steps:
+	Learn how to do Unity UI Properly.
+		I have been hacking things together but there are tutorials for this all over the place.
+		I have started watching this : https://www.youtube.com/watch?v=Lq170ztDAPo : video which I feel I should actually follow step by step and read some documentation on the game objects used.
+		I am sure I can do slick UI creation, I just have to have the patience to learn first, plan second, and do third.
+
+
+What is a 'UnityAction<T>'?
+Why lead several of the fields/properties with the characters "m_", as in PlayerCharacterController.cs of the FPSMicro Example game? After seeing several const elements, I assume 'm_' is short for mutable.
+
+
+
+New Unity Input System - **IMPORTANT** I must manually install the newer Unity Input System via Window > Package Manager > "Packages:Unity Registry" > Input System.
+	
+	Input Action Asset - a single object (Script behind the scenes I assume) which maintains everything associated with a player's input to the game.
+	Control Scheme - Code for managing inputs from the various input devices (mouse/keyboard, gamepad, et cetera).
+	
+	This has been super useful : https://gamedevbeginner.com/input-in-unity-made-easy-complete-guide-to-the-new-system/#how_to_manage_input :

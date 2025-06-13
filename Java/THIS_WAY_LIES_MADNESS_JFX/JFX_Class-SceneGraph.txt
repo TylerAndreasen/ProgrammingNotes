@@ -1,0 +1,5 @@
+JFX Class : Scene-Graph
+
+This is a heirarchy of nodes that hold some sort of information.
+
+Contained by a Scene, as described in JFX_Class-Scene.txt

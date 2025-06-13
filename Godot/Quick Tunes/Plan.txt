@@ -1,0 +1,16 @@
+I have the idea of a music player, but I need to be more explicit, or I will quickly get lost in ideas.
+
+
+--	Reading Files - I will need to, for both openning audio files and tracking where on disc audio can be found, read and write information to files that will contain data between launches of the program. Remembering how to properly read files in C# will be necessary.
+	-- I intend there to be a file that stores the information about the tracks. Initially, I wanted to just point to the folders those files were found in, but it is probably simpler to have the file just store the full filepath, as the concern about the size of such data on disc is unfounded. Doing so would also likely be beneficial as I can later tack on meta data about each song, namely genre, and possibly the game it is from (possibly a unique ID for the song. Playlists will be handled in a separate file, probably based on the file. 
+
+C:\Users\CanaDev\Documents\Quick Tunes\locations.txt
+
+--	The Queue - This sort of software does little without having multiple tracks to be played in a row. Adding to and removing tracks from the list will be required.
+	-- The Queue - For my purposes, the Queue will be a C# List with an separate index value. When the user presses play (either the Space bar or the play/pause button) an event is fired to the Queue. This calls a method on the current track (an AudioPlayer has .Play() or whatever called). Once the AudioPlayer is done, it should fire the Finished Event. **The Queue will need to dynamically subscribe to the finished event of each AudioPlayer.** What all must happen afterwards I am unsure. I may need to ensure that files are not automatically looping (as to avoid never firing finished). Regardless, for safety's sake Queue will tell the current track to stop playing (I assume Stop() exists). Then the Queue needs to check the current index against the length of the list. In the case that the end of the list has been reached: if the setting is to loop through the queue and call for the , set the current track to 0:: if the setting is to not loop, leave the current indicator as is (don't do anything else, as the user should hear the music stop). In the case that the current Index is within the list, increment the index and tell the current track to play.
+
+
+	-- Queue Options: Beyond adding and removing tracks from the queue, I would likw to add the ability for a user to: 1. allow the Queue to loop (a button on screen, which has its state read when the queue reaches the end), 2.  Skip to the beginning and end of tracks (Button that raises some Event, though I don't know how the changing of time will function, it will depend on how the framework for audio files works in Godot),  Future features include: The option to randomize the order of the tracks in the queue (On button press, method creates new list, adds current song to list, then removes random songs from the old queue adding them to the new queue, when done, point the Queue at the new queue). Changing the order of tracks (these will be wonderful, as I am sure I will get sick of the songs in the current order alone.
+
+
+--	Loading - I don't know how to properly load audio. This will need to be my next step in the editor.

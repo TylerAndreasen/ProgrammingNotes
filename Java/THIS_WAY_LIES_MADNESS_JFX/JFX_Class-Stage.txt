@@ -1,0 +1,5 @@
+JFX Class : Stage
+
+Can be thought of in a similar manner to the stage within a real world theater, or the object that defines a window (I think).
+
+Can contain one or more Scenes, as defined in JFX_Class-Scene.txt

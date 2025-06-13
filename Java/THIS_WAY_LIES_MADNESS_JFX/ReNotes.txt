@@ -1,0 +1,22 @@
+I believe the install is actually working, and I defintely have it installed
+
+JavaFX Project <-- Not the library one
+Ensure VM Args are set, should be in one of the previous JFX projects
+
+Stage - Meta Object - The window
+Scene - Add/Remove drawing surfaces to the stage
+Scene-Graph - Heirarchical Tree containing nodes
+Node - The things (buttons, text-boxes et cetera)
+	Root
+	Branch
+	Leaf
+
+
+launch(args);
+
+start()
+	Gives us a Stage object, need a root node and a scene.
+	Add the root to the scene and the scene to the stage
+
+mainStage.show(); //at the end of the start()
+

@@ -1,0 +1,26 @@
+Plan for the Flappy Project:
+	Recreate the mobile time waster Flappy Bird inside Godot to learn the tool and expand my comfort with the interface.
+	The major components of the game are the Bird, the Pipes, User Input, and the Score.
+	Depending on the programming Language I choose, this will take more or less work.
+
+Bird Design
+	Sprite2D - Circle, maybe with a line to indicate the direction adjusted when falling.
+	RididBody2D - handles the application of gravity and 
+	Code - applies a force to the bird that simulates a jump, called when the user presses a key (possibly anything other than Esc).
+
+Pipes Design
+	Sprite - Green Block
+	RigidBody - to be moved across the screen overtime
+	CharacterBody2D - an object which detects collisions but relies on code for movement and collision response. Movement will simply be to slide left, and any collision will result in a game restart.
+
+Multi-Pipe
+	I will need to repeatedly instantiate the full detecting-double-pipe object. This is to avoid a memory leak, and to setup new positions for future pipes.
+	Idea: In a later version, use Perlin Noise to create smooth transitions between pipe locations.
+
+**At this time, I do not know the name of the component that I am looking for to accomplish this, but it should be straightforward to find on godot's tutorial/whatever page
+
+**Later
+ScoreManager
+	
+HUD
+	Visualizaes the score to the player.

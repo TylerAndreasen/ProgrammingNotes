@@ -1,0 +1,29 @@
+I am running into an issue in Godot in which a script attached to an object is never executing. And I am reasonably confident in this because code in the _ready() method is supposed to execute when the object enters the Scene Tree, and a message is not being printed.
+
+Sometimes this is because there is a compile error, the type the script is
+decendent from is not the same as the type specified in the file.
+
+I know I have tried to attach a compiling script to the prefab and to the instance in the main scene with no change in behavior.
+
+At this point I intend to write down everything about a working version that I notice, and then compare that to what I notice about a non-working version.
+
+
+#In AbsoluteBasics
+1. I learned there is a detach script button. This may be useful in detaching and reattaching I may fix the issue.
+
+2. Attaching the script to either the prefab or the instance does execute the script.
+
+3. The Child object in the scene tree is of the type Node2D. And the script attached to it extends the type of Node2D.
+
+4. The same is true of the Test Scene and its script.
+
+It occurs to me now that the simple fact of the two objects I am dealing with are Node2D objects may be the root cause.
+
+#In FBC999
+1. Removing all code outside of the extends and ready() statements does extecute the code. The problem being that the code was previosuly in a class. I have no sense of whether that is going to pose a problem in the future.
+
+#Conclusion
+I know now that putting my code for the bird into a class was apparently the cuprit, as the ready message did print, but I am unclear what that means, as other parts of the code started throwing errors when I commented the class declaration. I will need to spend more time working with the basics to figure out who classes in GDScript work and how I am supposed to use them.
+I am exuasted rn and am unable to tell what the two links below are trying to tell me about code in classes. There is a significant difference between Scripts and Scenes, and there are recommendations about how to use each, but I am not awake enough to really understand the difference.
+I am unclear what I am being told. I would expect that to handle the movement of the bird I will need to write code but I cannot make heads or tails of the docs. 
+I will need the caffiene to really understand this.

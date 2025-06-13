@@ -1,0 +1,65 @@
+Goal: Create a program which is capable of allowing a user to create a editable graph.
+
+Step 1: Learn how the graph edit in Godot works. The GraphEdit is a Environment to create graphs with controls not unlike the 2D viewport for Godot itself. The GraphNode is an actual vertex in the graph, though it strongly focuses on text. I am unsure if there are style changes that can be made to create a more visual toolkit (think the graphs from the series Boss Keys).
+
+Step 2: Determine how to allow a user to make connections between GraphNodes. See Notes.txt:Note 1 for more info.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Version 2: Allow a user to move the existing elements 
+
+Version 3: Allow a user to create new Verticies at run time with default (editiable if I am feeling spicy) text.
+
+Version 4: Allow user to create new Edges between Verticies. I intend for you to be able to right click to create a new edge when hovered over a vertex, then drag the end of the edge to another vertex to right click again to attach.
