@@ -1,0 +1,10 @@
+JFX Class : Node
+
+This is an object that holds data for visual objects (buttons, text boxes, et cetera). Are created in a heirarchy, creating a 'root' node, 'branch' nodes, and 'leaf' nodes. Think the Trunk, branch and leaf quests from og concepts of TWUC.
+
+Root : Multiple Types of root nodes, maybe used for stuctural control, don't really know.
+	Group : A basic kind of root node.
+
+Branch : 
+
+Leaf :

@@ -1,0 +1,7 @@
+JFX Class : Scene
+
+Think the Visuospatial Sketchpad from CogPsy.
+
+Generally//Always contained by a Stage, as defined in JFX_Class-Stage.txt.
+
+Contains objects called a Scene Graph or Scene-Graph as described in JFX_Class-Scene-Graph.txt

@@ -1,0 +1,5 @@
+Application and General
+
+The Main of the program extends the Application Class to be able to overwrite the method start(Stage arg0) and actually make a viewable program.
+
+The launch(args) method within the Main's start() is used to begin the start().
