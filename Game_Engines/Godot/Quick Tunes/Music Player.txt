@@ -1,0 +1,3 @@
+I would like to be able to play different mixes of music I have on disc, but I can't do that across folders, and I want to keep things organized.
+
+With learning more about Godot, I will need to learn about how to add audio to things in game. And having a music player will teach me about loading files, playing audio at scripted times, saving data to a file about where known files are, and more.

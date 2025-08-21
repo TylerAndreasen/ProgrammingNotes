@@ -1,0 +1,1 @@
+Simple, playable version of solitare in Godot.
