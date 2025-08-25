@@ -1,0 +1,1 @@
+Idea: A light weight program which allows me to create one-off tasks and more involved tasks that I can edit, and mark as done completely or done in segments. Many nested Checklists and such.

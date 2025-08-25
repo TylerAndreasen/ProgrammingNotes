@@ -1,0 +1,39 @@
+I had bunch of text in this file that explained a lot of what I learned about
+Godot.
+1. The most important lesson I learned is to not leave notes files inside of
+Godot, because there is a chance it will get deleted for no apparent reason.
+
+
+2. GDScript is whitespace sensitive, I knew this before beginning. What I did
+not know and makes me quite annoyed to discover that the class declaration line
+has a huge impact on how the rest of the file is compiled. The line::
+
+class Player: extends RigidBody2D
+
+compiles very differently from::
+
+class Player:
+	extends RigidBody2D
+
+. The former looks correct and compiles, but means that what I assumed were
+class variables are infact nothing, or are at least not usable inside of
+functions. While the latter does allow for class variables. Later, this does not
+work, and the extention actually needs to happen before the class declaration,
+which confuses the hell out of me.
+
+
+3. Godot gives devs the ability to access script variables inside the Inspector
+editor with the @export tag at the start of a variable declaration.
+	@export var jump_force_multiplier = 3
+This makes the above variable visible and gives the ability to tweak that value as it runs, but does not seem to back apply it to the script. There may be a way to do this, but I have not found it.
+
+
+4. The way stripts work when attached to objects in GDScript is confusing to me.
+It seems that the first line needs to be an extends declaration for the class of the Node that the script is being attached to. For my Flappy Bird test, the player.gdd script file needs to start with 'extend RigidBody2D' to compile properly, though why I do not understand. (the linear_velocity variable apparently has a clone in RigidBody, but I am going to move on.)
+
+
+5. My current understanding of the physics is this:
+	The root Node that will be experiencing physics needs to be of the type RigidBody2D
+
+
+To Try: put an & infront of the Input action value
