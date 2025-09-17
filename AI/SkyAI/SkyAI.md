@@ -12,3 +12,4 @@ And there are a number of important questions I need to answer about what I am g
 - Deciding on what weapon/spell/shout to equip
     - The AI will have to decide when to use the equiped tools, but how I teach them to select such is also important.
 - Health Management (Do I push the agent to learn stealth archerism, or take measures not to? Or do I simply make the player immortal and ignore the health system)
+- Research: What other similar games have been trained through, and how was that achieved (as impressive as something that can beat Super Mario is, this is a very different ball game)?
