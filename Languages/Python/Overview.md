@@ -1,6 +1,6 @@
 # Overview of Python
 
-Python, as a scripting language, is fairly easy to use and write in, and this far the lack of type safety is yet to bite me. My first project relies on Numpy which was luckily pretty easy to install.
+Python, as a scripting language, is fairly easy to use and write in, though the lack of type safety has bitten me a couple fo times. My first project relies on Numpy which was luckily pretty easy to install.
 
 ## Important Info
 
@@ -30,3 +30,16 @@ This syntax will actually generate an `[n][n]` array of the value 0 that is not 
 ```
 
 Weak variable convensions aside, this does result in 2d arrays that can have n^2 unique values stored within. I ran into very strange problems with this array-wise duplication of data during my first attempt at building Minesweeper in Python.
+
+## Method Overloading
+
+AFAIK, Python does not innately support Method Overloading, meaning that attempts to define variants in behavior based on supplied types is not feasible without unique method names. It is possible that other hack solutions my functionally or actually allow for overloading, though I see this as unlikely to be worthwhile.
+
+## __init__ Files, Modules, and Packages
+
+A Python Module is a name for a Python source code file when imported, especially as an external library.
+A Python Package is a collection of Modules combined with an `__init__.py` file.
+
+As a part of a group project, I was introduced to Python `__init__.py` files. I am not sure from a technical perspective what this does, but seems to group code into a package of some sort.
+
+The `__init__.py` file is used by Python to note that several modules are to be used as a Package. While this can be used to simply import all of the necessary submodules necessary for running the major elements, the `__init__.py` file is a full python file and can contain normal code. This code generally takes the form of importing submodules, setting up data for functionality, assign a Package version number, and more. 

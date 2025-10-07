@@ -208,14 +208,14 @@ Note:: The initializer line of the above does not actually need the `x` or `=`to
 
 At the time of writing these words, I have been told that it is often the case in C++ that a std::vector is more appropriate structure than an array for data in C++. I get the vibe that these are more similar to Java ArrayLists, but I really don't know.
 [Video](https://www.youtube.com/watch?v=VNb3VLIu1PA&t=509s)
-Understanding 1: I was at least partially wrong about by intuition (at least as far as I remember Java's AL<>). The stl::vector class defines a list that is stored in contiguous memory (the main thing that I believe is different in Java), is of a fixed size, but will resize itself to a more appropriate size when necessary. The 'contiguous memory' feature reduces the access time of elements.
+Understanding 1: I was at least partially wrong about by intuition (at least as far as I remember Java's AL<>). The std::vector class defines a list that is stored in contiguous memory (the main thing that I believe is different in Java), is of a fixed size, but will resize itself to a more appropriate size when necessary. The 'contiguous memory' feature reduces the access time of elements.
 
 To use a vector in C++ code, you must include the following lines in your soruce:
 ```c++
 #include <vector>
 using std::vector;
 ```
-The second line is not strictly necessary, and may be considered bad practice by purists, but will speed up development as a newbie to the language.
+The second line is not strictly necessary, and may be considered bad practice by purists, but will speed up development as a newbie to the language, without including all of the standard library.
 
 Basic Use:
 ```c++
@@ -247,7 +247,7 @@ for (int i = 1; i < 11; i++) ages.push_back(i);
 // Iterator
 // Loop from the begin location of ages to the end location of ages, and increment the iterator each time through the loop.
 // The auto keyword automatically determines the type that is necessary to ensure the code compiles.
-// It determines this based on the return type of the call "ages.begin()".
+// It determines this based on the return type of the call "ages.begin()", as the template necessary to create a vector of T complicates matters.
 for (auto it = ages.begin(); it != ages.end(); it++)
 {
 	// This does not compile, cannot print an iterator directly
@@ -255,13 +255,13 @@ for (auto it = ages.begin(); it != ages.end(); it++)
 	// Other Options
 	cout << *it << endl;  // Value in the array (0-10)
 	cout << &it << endl;  // Location in memory of the iterator (doesn't change)
-	cout << &*it << endl; // Location in memory of the value in the array (increments by 4 bytes)
+	cout << &*it << endl; // Location in memory of the value in the array (increments by 4 bytes, the iteration occurs over a vector containing ints)
 }
 ```
 Using the iterator is a little trickier than the Java equivalent. As the comments note, you cannot simply print the iterator `it` itself. But you can dereference the iterator to get the value by `*it`. This is generally the most useful of the three lines, but all are included for completeness.
 
 IMPORTANT:: Constant Iterators.
-The below code shows the above rewritten with constant iterators. A constant iterator disables the iterator from modifying the values of the collection being pointed to. This is helpful to avoid unintended changes to values in code that only needs to read values from a collection.
+The below code shows the above rewritten with constant iterators. A constant iterator disables the iterator from modifying the values of the collection being pointed to. This is helpful to avoid unintended changes to values in code that only needs to read values from a collection. Note: such iterators are generally named `cit` to remind maintainers of its constant nature.
 ```c++
 vector<int> ages;
 ages.push_back(0);
@@ -269,13 +269,13 @@ for (int i = 1; i < 11; i++) ages.push_back(i);
 
 // Constant Iterator
 // These iterators only allow data to be read from the iterated collection, not modified
-for (auto it = ages.cbegin(); it != ages.cend(); it++)
+for (auto cit = ages.cbegin(); it != ages.cend(); it++)
 {
 	// This does not compile, cannot modify a constant iterator
 	//*it = 20;
-    cout << *it << endl;  // Value in the array (0-10)
-	cout << &it << endl;  // Location in memory of the iterator (doesn't change)
-	cout << &*it << endl; // Location in memory of the value in the array (increments by 4 bytes)
+    cout << *cit << endl;  // Value in the array (0-10)
+	cout << &cit << endl;  // Location in memory of the iterator (doesn't change)
+	cout << &*cit << endl; // Location in memory of the value in the array (increments by 4 bytes)
 }
 ```
 
@@ -311,7 +311,21 @@ These seem useful, if more situational. Despite what I suspected, there is not a
 
 Understanding 2: After following along with the video, vectors are probably going to be my go to for most list applications. There will absolutely be times where an array or an enumeration is more appropriate, but the flexibility and ease of use of a vector is to great to pass up.
 
-### *10 STRINGS!**
+Understanding 3: `.erase()` and `.insert()` have linear time complexity, where `.push/pop_back()` have constant time complexity, making the former notably less performant. Also `.pop_back()` does not return the last element, it must be accessed be `vec.back()`.
+
+
+### **9.2 New Vectors**
+
+Previously, if I needed to create a copy of a section of a vector quickly, I could use something like the following:
+```cpp
+// TODO implement for loop duplication
+```
+Or one can use built-in operations to copy a range of an existing vector.
+```cpp
+// TODO research and implement range() version
+
+
+### **10 STRINGS!**
 
 I have done a bit with strings in my initial experiments in QuickGraph, and realize that I really do not have a good handle on them. I initially had the first of the two below code snippets in my `Vertex.cpp ` file, and changing to the latter fixed what appeared to be problems recognized by some very low level C++ language code for supporting strings.
 
