@@ -1,13 +1,19 @@
 # **GO ON, GIT**
 
 Despite using `git` some for years and doing so extensively for about a year now, I am yet to add notes on `git` to this repo.
-It is high time I change this, though I should note that I will be discussing both the CLI Version Control system `git` and the data storage provider GitHub. And no, I do not actively use GitHub Desktop.
+It is high time I change this, though I should note that I will be discussing both the CLI Version Control system `git` and the data storage provider GitHub. And no, I do not actively use GitHub Desktop, it hindered me more than the help was worth.
+
+A commnd reference can be found in the so named file in the containing directory.
 
 ## **Overview**
 
-`git` is a type of Version Control software. This means that a user can submit files to a `git` repository, make changes, save snapshots of those changes, rollback to previous snapshots, and much more. Often, Version Control software is used to manage codebases (software projects that take up multiple files, often spread across many folders for organizational purposes) being developed by multiple people within an organization.
+`git` is a type of Version Control software. This means that a user can submit files to a `git` repository, make changes, save snapshots (called commits) of those changes, rollback to previous snapshots, and much more. Often, Version Control software is used to manage codebases (software projects that take up multiple files, often spread across many folders for organizational purposes) being developed by multiple people within an organization.
 
 GitHub is an online data storage platform that is closely integrated with the `git` CLI, though is not the only method by which `git` can send data remotely. 
+
+## **An Important Note**
+
+There is an important file that git can interact with that is not necessary for all projects: the `.gitignore`. This file will be read by git when you add files to be tracked, and any files or folders (slighly different specifications) that match a pattern described in this file will not be tracked. This can have a variety of uses, though the main use cases I am aware of are as follows: files with information that needs to be secret (API keys, passwords, names depending on context), very large files (please minimize tracking images, videos, databases, basically anything other than text files within git), scratch files (those you use to manipulate text that is then copied into other files), log/report files (running 10 or 100 tests of your code is good, but there is no need for all other contributors to keep a record of your test logs). Please see the official documentation on the `.gitignore`, as there is no need for me to exposite to you all of the details.
 
 ## **Workflow (simple)**
 
@@ -56,12 +62,6 @@ Being connected to the GitHub Organization associated with the company the team 
 All of the members of the team (potentially including Alice if applicable) then access the `upstream` and create a fork of the repository from their GitHub account. This creates a copy of the repository that the user has easy access to, but the organization has high-level control over, and is now referred to as `remote`. From there all users define where they will store the repo locally and `pull` any existing files down to `local`. When a unit of work is done the normal upload sequence is taken, but others are not likely to need to act based on this. Only when a larger feature is close to or completed does a Pull Request get created.
 
 When the team was working and sending data to their own `remote`s, they could simply push changes to their own repo because they were the only ones changing it. When the time comes to connect work to the `upstream`, multiple people will be impacted and should evaluate the changes made. Hence, a developer who intends to have work reflected in `upstream` requests that their changes be pulled, rather than pushing. Aside from providing the context of what the changes are and why they are made, Pull Requests can be used to create a back and forth about the changes being made, ensuring that the requirements the Pull Request is addressing are accurately being met. Then only once the concerns of those impacted by the change are satisfied, the PR is pulled and old branches can be pruned. Note: This is generally the point at which other developers must reflect changes down to their systems. Importantly, this typically involves committing current progress, switching to `main` or the relevant branch, and fetching or pulling information to `local` directly from `upstream` and then pushing it to `remote`. This is because users can only have one fork of any given repository associated with their account, and creating pull requests originating from a shared repo to all contributers is unnecessary (sic).
-
-## **Command Reference**
-
-This command reference is intended to act as a secondary reference for those who have a colligate or self-taught experience in `git`, not a primer on those totally fresh to it.
-
-- `git rm --cached path/to/file` : This removes files from being tracked by git. I sometimes find that using `*` to stop tracking all files, updating the `.gitignore`, and then re-adding all files to be  simpler than removing files individually. Though if only one or two files are to be removed, individual removal may be simpler.
 
 ## **Common Issues**
 ## **Limitations of `git`**

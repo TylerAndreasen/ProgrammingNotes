@@ -1,0 +1,218 @@
+Input Code:
+
+```python
+def check_valid_grammar_char(character) -> bool:
+    """
+    Expects a single character.
+    Returns whether the character is valid to be in the language defined by
+    the grammar outright.
+
+    Numeric Indecies taken from the ASCII table.
+    """
+    index = ord(character)
+
+    # Capital Letters
+    if index in range(65,91):
+        return True
+    
+    # Lowercase Letters
+    if index in range(97,123):
+        return True
+    
+    # Delimiters ()*+
+    if index in range(40,44):
+        return True
+    
+    # Digits plus /
+    if index in range(47,58):
+        return True
+    
+    # Relational Operators <=> and ;
+    if index in range(59,63):
+        return True
+    
+    # ' ', -, _, {}
+    other_chars_indices = {32, 33, 45, 95, 123, 125}
+    if index in other_chars_indices:
+        return True
+    
+    return False
+
+letter = chr(31)
+
+while (True):
+    if ord(letter) > 127:
+        break
+    
+    if (not check_valid_grammar_char(letter)):
+        pass#print(f"Char {letter} is not valid, :{ord(letter)}:")
+    else:
+        print(f":{letter}: is Valid Letter")
+    letter = chr(ord(letter) + 1)
+```
+Ouput Tree:
+```Module(
+    body=[
+        FunctionDef(
+            name='check_valid_grammar_char',
+            args=arguments(
+                args=[
+                    arg(arg='character')]),
+            body=[
+                Assign(
+                    targets=[
+                        Name(id='index', ctx=Store())],
+                    value=Call(
+                        func=Name(id='ord', ctx=Load()),
+                        args=[
+                            Name(id='character', ctx=Load())])),
+                If(
+                    test=Compare(
+                        left=Name(id='index', ctx=Load()),
+                        ops=[
+                            In()],
+                        comparators=[
+                            Call(
+                                func=Name(id='range', ctx=Load()),
+                                args=[
+                                    Constant(value=65),
+                                    Constant(value=91)])]),
+                    body=[
+                        Return(
+                            value=Constant(value=True))]),
+                If(
+                    test=Compare(
+                        left=Name(id='index', ctx=Load()),
+                        ops=[
+                            In()],
+                        comparators=[
+                            Call(
+                                func=Name(id='range', ctx=Load()),
+                                args=[
+                                    Constant(value=97),
+                                    Constant(value=123)])]),
+                    body=[
+                        Return(
+                            value=Constant(value=True))]),
+                If(
+                    test=Compare(
+                        left=Name(id='index', ctx=Load()),
+                        ops=[
+                            In()],
+                        comparators=[
+                            Call(
+                                func=Name(id='range', ctx=Load()),
+                                args=[
+                                    Constant(value=40),
+                                    Constant(value=44)])]),
+                    body=[
+                        Return(
+                            value=Constant(value=True))]),
+                If(
+                    test=Compare(
+                        left=Name(id='index', ctx=Load()),
+                        ops=[
+                            In()],
+                        comparators=[
+                            Call(
+                                func=Name(id='range', ctx=Load()),
+                                args=[
+                                    Constant(value=47),
+                                    Constant(value=58)])]),
+                    body=[
+                        Return(
+                            value=Constant(value=True))]),
+                If(
+                    test=Compare(
+                        left=Name(id='index', ctx=Load()),
+                        ops=[
+                            In()],
+                        comparators=[
+                            Call(
+                                func=Name(id='range', ctx=Load()),
+                                args=[
+                                    Constant(value=59),
+                                    Constant(value=63)])]),
+                    body=[
+                        Return(
+                            value=Constant(value=True))]),
+                Assign(
+                    targets=[
+                        Name(id='other_chars_indices', ctx=Store())],
+                    value=Set(
+                        elts=[
+                            Constant(value=32),
+                            Constant(value=33),
+                            Constant(value=45),
+                            Constant(value=95),
+                            Constant(value=123),
+                            Constant(value=125)])),
+                If(
+                    test=Compare(
+                        left=Name(id='index', ctx=Load()),
+                        ops=[
+                            In()],
+                        comparators=[
+                            Name(id='other_chars_indices', ctx=Load())]),
+                    body=[
+                        Return(
+                            value=Constant(value=True))]),
+                Return(
+                    value=Constant(value=False))],
+            returns=Name(id='bool', ctx=Load())),
+        Assign(
+            targets=[
+                Name(id='letter', ctx=Store())],
+            value=Call(
+                func=Name(id='chr', ctx=Load()),
+                args=[
+                    Constant(value=31)])),
+        While(
+            test=Constant(value=True),
+            body=[
+                If(
+                    test=Compare(
+                        left=Call(
+                            func=Name(id='ord', ctx=Load()),
+                            args=[
+                                Name(id='letter', ctx=Load())]),
+                        ops=[
+                            Gt()],
+                        comparators=[
+                            Constant(value=127)]),
+                    body=[
+                        Break()]),
+                If(
+                    test=UnaryOp(
+                        op=Not(),
+                        operand=Call(
+                            func=Name(id='check_valid_grammar_char', ctx=Load()),
+                            args=[
+                                Name(id='letter', ctx=Load())])),
+                    body=[
+                        Pass()],
+                    orelse=[
+                        Expr(
+                            value=Call(
+                                func=Name(id='print', ctx=Load()),
+                                args=[
+                                    JoinedStr(
+                                        values=[
+                                            Constant(value=':'),
+                                            FormattedValue(
+                                                value=Name(id='letter', ctx=Load()),
+                                                conversion=-1),
+                                            Constant(value=': is Valid Letter')])]))]),
+                Assign(
+                    targets=[
+                        Name(id='letter', ctx=Store())],
+                    value=Call(
+                        func=Name(id='chr', ctx=Load()),
+                        args=[
+                            BinOp(
+                                left=Call(
+                                    func=Name(id='ord', ctx=Load()),
+                                    args=[
+                                        Name(id='letter', ctx=Load())]),
+                                op=Add(),
+                                right=Constant(value=1))]))])])

@@ -1,0 +1,59 @@
+Input Code:
+
+```python
+var_a = 5
+var_b = 10
+var_c = 15
+var_d = 20
+
+def multiple_globals():
+    global var_a, var_b, var_c, var_d
+    multiply = var_a * var_b
+    add = var_c + var_d
+```
+
+Output AST:
+```python
+Module(
+    body=[
+        Assign(
+            targets=[
+                Name(id='var_a', ctx=Store())],
+            value=Constant(value=5)),
+        Assign(
+            targets=[
+                Name(id='var_b', ctx=Store())],
+            value=Constant(value=10)),
+        Assign(
+            targets=[
+                Name(id='var_c', ctx=Store())],
+            value=Constant(value=15)),
+        Assign(
+            targets=[
+                Name(id='var_d', ctx=Store())],
+            value=Constant(value=20)),
+        FunctionDef(
+            name='multiple_globals',
+            args=arguments(),
+            body=[
+                Global(
+                    names=[
+                        'var_a',
+                        'var_b',
+                        'var_c',
+                        'var_d']),
+                Assign(
+                    targets=[
+                        Name(id='multiply', ctx=Store())],
+                    value=BinOp(
+                        left=Name(id='var_a', ctx=Load()),
+                        op=Mult(),
+                        right=Name(id='var_b', ctx=Load()))),
+                Assign(
+                    targets=[
+                        Name(id='add', ctx=Store())],
+                    value=BinOp(
+                        left=Name(id='var_c', ctx=Load()),
+                        op=Add(),
+                        right=Name(id='var_d', ctx=Load())))])])
+```
