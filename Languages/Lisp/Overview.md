@@ -2,7 +2,7 @@
 
 Lisp seems to rely heavily on the concept of lists, and all functions that are called are written in this way.
 
-Note:: Lisp uses prefix notation for arithmetic, this is going to take some getting used to, though does benefit itself in terms of read- and writability  (for those fluent in the language) as all functions are written in the same manner.
+Note:: Lisp uses prefix notation for arithmetic, this is going to take some getting used to, though does benefit itself in terms of read- and writability (for those fluent in the language) as all functions are written in the same manner.
 
 Much of the initial draft of the information in this document is derived from [this](https://www.youtube.com/watch?v=cKK-Y1-jAHM) video.
 Further information was gathered from the numerous pages accessible from [here](https://www.geeksforgeeks.org/category/lisp/)
@@ -53,7 +53,7 @@ As one might intuit, the above declares `x` to contain the value `10`, and `y` t
 
 2. Functions are everything::
 As stated, Lisp relies heavily on lists, and due to its highly consistent implementation, all commands have similar structures.
-The following solves the polynomial expression `x^2 + 6x +8`: 
+The following solves the polynomial expression `x^2 + 6x +8`:
 ```lisp
 (/ (+ -6 (sqrt (- (* 6 6) (* 4 1 8)))) (* 2 1))
 ```
