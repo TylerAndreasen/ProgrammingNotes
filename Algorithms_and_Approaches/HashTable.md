@@ -48,4 +48,4 @@ Create an empty hash table (int, int), which will store (k,v) as the (nums[i],i)
                 return i,X
             add to the table (nums[i],i)
 
-The C++ implementation I completed for this took longer than expected, as I tried to implement as a list of lists myself, and had a few hiccups when trying to implement with the std::unordered_map class.
+The C++ implementation I completed for this took longer than expected, as I tried to implement as a list of lists myself, and had a few hiccups when trying to implement with the std::unordered_map class, which functions as a kvp class.
