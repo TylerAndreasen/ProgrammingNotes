@@ -11,7 +11,7 @@ Questions to answer:
 3. Language basics
 4. Interacting with the Interpreter
 
-# **Contents**
+## **Contents**
 
 1. A Hello World
 2. Running Lisp scripts
@@ -43,7 +43,9 @@ At this time, I am unsure if Lisp scripts that require others to function requir
 
 ## **3. Language Basics**
 
-1. Variables are defined with the `let` keyword, but are nested inside two sets of parentheses, this allows a list of variables to be defined at once, as in the following example:
+1. Variables
+
+Variables are defined with the `let` keyword, but are nested inside two sets of parentheses, this allows a list of variables to be defined at once, as in the following example:
 
 ```lisp
 (let ((x 10) (y 20) (z)))
@@ -51,7 +53,23 @@ At this time, I am unsure if Lisp scripts that require others to function requir
 
 As one might intuit, the above declares `x` to contain the value `10`, and `y` to contain the value `20`. the variable `z` is declared without a value and as such is given `NIL` by default, as the language's null value.
 
-2. Functions are everything::
+2. Lists
+
+Defining lists is a little more complicated, and I am still yet to determine how to define more than one list variable in the same scope. But the following defines a nested list, then prints out `OR` (capitalized because Lisp is gonna do whatever Lisp feels like) then `NIL`, refering to the second element of the list:
+
+```lisp
+(let ((x `(and nil (or nil t))))
+    (print (first (third x)))
+    (print (second x))
+)
+```
+
+3. Conditionals``
+
+
+
+
+100. Functions are everything::
 As stated, Lisp relies heavily on lists, and due to its highly consistent implementation, all commands have similar structures.
 The following solves the polynomial expression `x^2 + 6x +8`:
 ```lisp

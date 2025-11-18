@@ -26,7 +26,7 @@ NOTE:: I spent several minutes trying to diagnose why a method I pasted into bot
 
 ### **1.2 Moving from Single File Implementations to Multi-File Implementations**
 
-At times it is easier to implement a test of some functionality or idea in a single file, which contains all of the code for the class, and the main() method which will operate on the code. There is a time and a place for this approach to development in C++ but I find myself tiring of the hassle that comes along with moving from a single file to multi-file implmentations of the idea, especially as I do not intend to create separate solutions when doing this sort of shift (though perhaps I should if I ever take this approach again). 
+At times it is easier to implement a test of some functionality or idea in a single file, which contains all of the code for the class, and the main() method which will operate on the code. There is a time and a place for this approach to development in C++ but I find myself tiring of the hassle that comes along with moving from a single file to multi-file implmentations of the idea, especially as I do not intend to create separate solutions when doing this sort of shift (though perhaps I should if I ever take this approach again).
 There are a few sources of frustration when making the move from a single file to multiple.
 1. Method Declarations:: When implementing a class in a single file, the class can contain every element it needs to function as a class. When following language standards for C++, the header file contains essentially a series of sections of the original implmentation, while the new `.cpp` file contains everything the old file did, minus the class declaration, plus the `#include "relevant.h"`, plus the token `ClassName::` preceeding every method declaration that is implemented the `.cpp` file. (See:: OOP may imply that not all methods declared by the header file are implement by a `.cpp` file of the same name. As such methods may need different implementations for different subclasses, though I am unsure how to implement a subclass at this time.)
 2. Type Shenanigans:: As mentioned in *1.1 Classes Across Files*, (I believe) link-time issues can occur when needed types (string, vector) are included in the `.cpp` file using them extensively, but are not included in the header file which includes those types in the parameters and class members. I do find it slightly strange that there is not an early error message for this in Visual Studio. This however may be the result of my not understanding when that sort of check can be done in the journey from source code to execution.
@@ -37,9 +37,9 @@ This section is dedicated only to the style of C++ as a language, not the functi
 
 1. Defining Classes : Classes in C++ are fully defined in two parts (just as variables are). And this takes the form of two parts: the header file, and the implementation file. This separation of definitions creates a huge flexibility that I do not fully grasp the consequences of, as header files can be defined in one place for basic behaviors, and local implementations can be made in files that are not a solely dedicated to that class or subclass definition.
     1.  The Header File supplies class member declarations. Variables and fields are defined by their types, modifiers, and names. Functions and Methods are defined by their access modifiers, return types, names, and parameters. The Header File also seems to be the intended place for constant class variables. Given the nature of C++ compilation, care must be taken with how header files are used and defined. It is quite easy to define a simple header file, try to use it and get compile errors. This is because a class definition can only exist once within what the linker is aware of, which is easily broken if a header file is included in both the implementing class file and the main() file. See the below alert for more information about how to avoid this in the header file itself.
-    2. The Implementation File supplies the runnable code that is executed. All code within this file must have a declaration within the header or will cause a compile error. Note: It is convention with C++ to create paired header and implementation files, for which the latter implements all members of the former. It is possible however to implement members in multiple files, varying the implementation in each. And it is one of the greatest strengths of C++ (from what I would understand) to create multiple implementations in different translation units. Allowing classes to be given a structure in one place, and have the implementation vary based on use case (including things like variations of NPC AI).  
+    2. The Implementation File supplies the runnable code that is executed. All code within this file must have a declaration within the header or will cause a compile error. Note: It is convention with C++ to create paired header and implementation files, for which the latter implements all members of the former. It is possible however to implement members in multiple files, varying the implementation in each. And it is one of the greatest strengths of C++ (from what I would understand) to create multiple implementations in different translation units. Allowing classes to be given a structure in one place, and have the implementation vary based on use case (including things like variations of NPC AI).
 
-> [!IMPORTANT] 
+> [!IMPORTANT]
 > The creation of a header must handle only allowing the header to be linked once. This can be done in one of the following ways. I have seen commentary online that the latter is preferred, despite Visual Studio creating the former by default.
 > Option 1:
 > ```
@@ -59,9 +59,9 @@ This section is dedicated only to the style of C++ as a language, not the functi
 
 2. Using Files and Classes : Referencing code, including classes, across C++ files is not as simple as it is in Java, for example. In order to reference code outside the present file, you must place an include statement at the top of (or at least inside) the relevant C++ file. The include statement for the native iostream class (handles console IO) is `#include <iostream>`. The `<>` specify that the code is not local or specific to the program you are writing, but is a library file (be it native C++ or an outside library being used by your program). To reference a header file defined within your program use a line with the structure `#include "headerName.h"`. The use of double-quotes and a `.h` file type specify that the header is within your program. Further, the double-quote syntax (AFAIK) allows for defining relative roots from the current file to the location of the header file being included allowing for both version control and careful code management.
 
-3. Describing Code Blocks : At this time, I do not know much about the standard ways to go about documenting C++ code properly. Visual Studio does seem to allow the use of a`/**/` block before a Class or Variable to document it, though I am unsure if this is simply not the proper procedure for C++. 
+3. Describing Code Blocks : At this time, I do not know much about the standard ways to go about documenting C++ code properly. Visual Studio does seem to allow the use of a`/**/` block before a Class or Variable to document it, though I am unsure if this is simply not the proper procedure for C++.
 
-4. Equality Testing : Deriving from C, C++ allows ints to be used as booleans for equality testing. This means that statements like `if (x = 0)` will assign the value of `x` to `0`, read the value `0` within `x` as false, and not execute the block. This is likely to occur when the intent was `if (x == 0)`. This problem gives rise to the style of placing constant values before variables in equality tests: `if (0 == x)`. As mistyping this with only one equals creates a compile error. 
+4. Equality Testing : Deriving from C, C++ allows ints to be used as booleans for equality testing. This means that statements like `if (x = 0)` will assign the value of `x` to `0`, read the value `0` within `x` as false, and not execute the block. This is likely to occur when the intent was `if (x == 0)`. This problem gives rise to the style of placing constant values before variables in equality tests: `if (0 == x)`. As mistyping this with only one equals creates a compile error.
 
 <details>
     <summary>Addmission</summary>
@@ -144,7 +144,7 @@ Despite this, the Ball class was defined as follows.
     using std::cout;
 
     Ball::Ball() : Ball(400.0, 300.0, 10.0) {}
-        
+
 
     Ball::Ball(float x, float y, float radius)
     {
@@ -229,7 +229,7 @@ for (int i = 1; i < 11; i++) ages.push_back(i);
 //Easy Access (for printing)
 for (int age : ages) cout << age << endl;
 ```
-Declaration of a vector is pretty simple, and I suspect cannot (or it rarely makes sense to) include any initialization inline. 
+Declaration of a vector is pretty simple, and I suspect cannot (or it rarely makes sense to) include any initialization inline.
 Initialization can be done via the `push_back()` method. This adds an element to the currently last unused element in the vector. If the vector is full or close to full, the vector will expand itself in memory. I use the word can, as I suspect there are methods like `push_front()` or `push(<type>, int)` which allow for different assignments to locations in memory.
 Access can be done very simply with the same for each syntax as Java. The `for (<type> name : vectorName)` is very handy, though does not allow for an innate index the way a loop on a normal array would. This issue can of course be sidestepped by declaring an index variable that gets incremented each iteration through the loop.
 
@@ -369,7 +369,7 @@ At the time of writing I am really quite unsure about how I should be handling s
 
 ### **11. Method Signitures**
 
-I have discovered that C++ is quite strict (despite some seemingly unnecessary flexiblity) about its method signitures. Namely where the `const` keyword can be placed. As far as I have experimented, the `const` keyword can be placed immediately before or after the method name in the declaration. But, the keyword must then be in the same place in the implementation, the two keywords cannot be in different places. I am yet to try to place the keyword differently relative to other method keywords, as I am not fully awake yet and it is not massively important. 
+I have discovered that C++ is quite strict (despite some seemingly unnecessary flexiblity) about its method signitures. Namely where the `const` keyword can be placed. As far as I have experimented, the `const` keyword can be placed immediately before or after the method name in the declaration. But, the keyword must then be in the same place in the implementation, the two keywords cannot be in different places. I am yet to try to place the keyword differently relative to other method keywords, as I am not fully awake yet and it is not massively important.
 
 ### **12. What's the deal with & *?**
 
@@ -421,6 +421,48 @@ cout << "&charlie: " << &charlie << endl;
 ## **13. GOTO**
 
 I have learned today that C has a native `goto` statement which can be used as it would in any assembly language. Given the nature of the language, I am unsure that I will use it much in plain C projects, but it is a useful piece of knowledge.
+
+## **14. File IO**
+
+> IMPORTANT:: The following is very much a first draft of how I should be handling files in Cpp. As with many such discussions online, I have found a lot of anger, disagreement, and otherwise unhelpful answers. So this is what I am going with for now.
+Some how, upto this point, I have had no real history of filesystem interactions with Cpp, which changes today.
+
+### **14.1 File Reading**
+
+C++ largely relies on streams to interact with files, and as such, I have included a snippet showing the overview, including the relevant includes. In this example, the file `example_lines.txt` is in the same directory as the `.cpp` file that contains this code. This will read the lines of the file one at a time, and print them to the console
+
+```cpp
+// basic_file_example.cpp
+#include <iostream>
+#include <string>
+#include <fstream>
+
+using std::cout;
+using std::endl;
+using std::string;
+using std::ifstream;
+
+int parancheck(string in);
+
+int main()
+{
+
+	ifstream filein("example_lines.txt");
+	string s;
+
+	getline(filein, s);
+
+	cout << "Lines: " << endl;
+	while (!filein.eof())
+	{
+		cout <<  s << endl;
+		getline(filein, s);
+	}
+
+	return 0;
+}
+
+```
 
 ## The End
 
