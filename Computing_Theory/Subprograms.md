@@ -49,3 +49,14 @@ Inout Mode (Pass by Reference) := Pass an access path (ref or pointer).
     + No copies
     - Indirect addressing, potential collisions, or incorrect pointers breaking programs in unexpected ways.
     X The process of Pass by reference and Pass by result are different, but the result is the same.
+
+## Predicate Functions
+
+Note:: When predecing an atom or list with a back-tick or single quote, the quoted value(s) are not evaluated.
+
+Scheme implements a few helpful equality tests:
+
+1. EQ? := Akin to a JavaScript "=="
+2. EQV? := Akin to a JavaScript "==="
+3. List? := returns whether a symbol is list
+4. Null? := returns whether a symbol contains a null value.
