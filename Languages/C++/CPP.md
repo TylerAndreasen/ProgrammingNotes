@@ -13,7 +13,7 @@ Things are not so simple in C++. At this time, I would understand the following 
 
 NOTE:: While not mentioned explicitly, I have come across information that would suggest rules for the use of angle brackets and double quotes in include declarations. Namely, I will use angle brackets for native C++ headers only, and use double quotes for secondary library and internal header files.
 
-### **1.1 Classes Across Files**
+#### **1.1 Classes Across Files**
 
 C++ allows the developer to implement proper classes, instead of just structs. But implementing classes with header files slightly complicates the situation. To implement a method from a header file inside a `.cpp` file, the declaration of the method must follow this standard:
 ```c+++
@@ -24,7 +24,7 @@ As far as I can tell, access modifiers (and the `static` keyword) are not specif
 NOTE:: I spent several minutes trying to diagnose why a method I pasted into both the header and `.cpp` file was showing as not matching the header from the `.cpp` file. I resolved this issue after I realized that there was a type-not-defined sort of error in the header file that was not being called out with a red squgilly line underneath in the header file. In short, I was referencing things like string and vector as types in the parameter list and the fields for the Vertex Class of QuickGraph, but had not declared their inclusion at the top of the header file.
 
 
-### **1.2 Moving from Single File Implementations to Multi-File Implementations**
+#### **1.2 Moving from Single File Implementations to Multi-File Implementations**
 
 At times it is easier to implement a test of some functionality or idea in a single file, which contains all of the code for the class, and the main() method which will operate on the code. There is a time and a place for this approach to development in C++ but I find myself tiring of the hassle that comes along with moving from a single file to multi-file implmentations of the idea, especially as I do not intend to create separate solutions when doing this sort of shift (though perhaps I should if I ever take this approach again). 
 There are a few sources of frustration when making the move from a single file to multiple.
@@ -77,8 +77,9 @@ As of the time of writing, I intend to:
 
 These are quite simple guidelines (which may cause some grumbling from the opinionated), and a ruleset that I can easily follow (See:: several months from now when I have undoubtedly taken some time away from C++, forgotten that I have written this, and completely ignored any standard for how to include things in my code). Note:: I do not plan to retroactively update all of my code with these rules in mind, as I honestly imagine that I will never touch most of it again.
 
-### **4. Console IO**
+### **4. IO**
 
+#### **4.1. Console IO**
 I have seen discussion online about how best to go about interacting with the console in C++ and don't totally understand the information I have found. In short, the recommendations I have seen are to:
 
 1. Do not include a `using std;` declaration in any file. The reason given is not super clear to me, something about conflicting member names, though this seems a little thin of a reason.
@@ -88,6 +89,10 @@ These suggestions seen and noted, I have two other options I am aware of at this
 
 1. Include a `using std::cout;` declaration. This allows me to simply type `cout` to write to the console with out shoving every part of the standard library into the build, sidestepping problem 1, while not having to engage with problem 2. This can be made more useful when the line is expanded to be `using std::cout; using std::endl; using sted::cin;`. This syntax allows `cout`, `cin`, and the constant `endl` to be used without the `std::` prefix. NOTE:: The multiple using declaration shown to apparently requries version 17 of C++, which I do not have installed or configured for this project, individual `using` declarations can be used.
 2. Hotkeys: I could, with a bit of time, implement C++ specific hotkeys that allow me to type longer instructions with a few keys. Implementing hotkeys for the full printing or reading statements could dramatically speed up my C++ development process, and push me to build more hotkeys for this machine.
+
+#### **4.2. File IO**
+
+As best I recall file IO is achieved in Cpp with streams, though that is the end of my specific memory of the process.
 
 ### **5. Argument List**
 
@@ -233,7 +238,7 @@ Declaration of a vector is pretty simple, and I suspect cannot (or it rarely mak
 Initialization can be done via the `push_back()` method. This adds an element to the currently last unused element in the vector. If the vector is full or close to full, the vector will expand itself in memory. I use the word can, as I suspect there are methods like `push_front()` or `push(<type>, int)` which allow for different assignments to locations in memory.
 Access can be done very simply with the same for each syntax as Java. The `for (<type> name : vectorName)` is very handy, though does not allow for an innate index the way a loop on a normal array would. This issue can of course be sidestepped by declaring an index variable that gets incremented each iteration through the loop.
 
-### **9.1 Iterators**
+#### **9.1 Iterators**
 
 Iterators are handy tools to run over vectors (amoung other things probably) that ease the looping process. Some sample code can be found below.
 ```c++
@@ -271,7 +276,7 @@ for (int i = 1; i < 11; i++) ages.push_back(i);
 // These iterators only allow data to be read from the iterated collection, not modified
 for (auto cit = ages.cbegin(); it != ages.cend(); it++)
 {
-	// This does not compile, cannot modify a constant iterator
+	// This does not compile, cannot print an iterator directly
 	//*it = 20;
     cout << *cit << endl;  // Value in the array (0-10)
 	cout << &cit << endl;  // Location in memory of the iterator (doesn't change)
@@ -314,7 +319,7 @@ Understanding 2: After following along with the video, vectors are probably goin
 Understanding 3: `.erase()` and `.insert()` have linear time complexity, where `.push/pop_back()` have constant time complexity, making the former notably less performant. Also `.pop_back()` does not return the last element, it must be accessed be `vec.back()`.
 
 
-### **9.2 New Vectors**
+#### **9.2 New Vectors**
 
 Previously, if I needed to create a copy of a section of a vector quickly, I could use something like the following:
 ```cpp
@@ -367,6 +372,21 @@ int Vertex::assignText(string in)
 
 At the time of writing I am really quite unsure about how I should be handling strings in C++. There is more I could say here, but I don't think it means very much, and will say only, I need to learn more.
 
+### **10. Strings**
+
+I have pretty minimal previous experience with strings at this time, and will need to have a better sense of working with them in a safe, practical way before I can tackle projects that I want to work on. As of writing this, I am coming back to C++ after some time away and need a refresher. Step 1 is to implement a minimum viable printing of text stored as a string.
+
+```C++
+#include <iostream>
+int main()
+{
+    std::string showText = "Hello Graphics!";
+    std::cout << showText << std::endl;
+}
+```
+
+Note that the above code does not include `#include <string>`, which I previously believed was required for this use case.
+
 ### **11. Method Signitures**
 
 I have discovered that C++ is quite strict (despite some seemingly unnecessary flexiblity) about its method signitures. Namely where the `const` keyword can be placed. As far as I have experimented, the `const` keyword can be placed immediately before or after the method name in the declaration. But, the keyword must then be in the same place in the implementation, the two keywords cannot be in different places. I am yet to try to place the keyword differently relative to other method keywords, as I am not fully awake yet and it is not massively important. 
@@ -418,9 +438,27 @@ cout << "&charlie: " << &charlie << endl;
 
 3. MOAR
 
-## **13. GOTO**
+### **13. GOTO**
 
 I have learned today that C has a native `goto` statement which can be used as it would in any assembly language. Given the nature of the language, I am unsure that I will use it much in plain C projects, but it is a useful piece of knowledge.
+
+### **14. Accepting User Input**
+
+C++ makes accepting User input from the command line surprisingly easy, though accepting long inputs for programmatic use is likely more tricky.
+
+Currently, I am able to use something like the following to pause code execution to ensure a developer can read a program's output.
+Note:: This does not appear to function when using something like Python at the command line to run the C++ code to pause `.exe`'s execution.
+
+```cpp
+char t;
+std::cin >> t;
+```
+
+This is likely to be considered poor form, but it is quite handy when simply pausing a script to read output. Not advisable to use in production code, could very easily have security implications.
+
+## **15. Command Line Arguments**
+
+
 
 ## The End
 
