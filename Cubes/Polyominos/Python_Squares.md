@@ -1,6 +1,6 @@
 # Polyominos in Python
 
-I am attempting to create a n-polyomino generator in Python. The following are notes I want to keep throughout the project.
+I am attempting to create a [n-polyomino generator in Python](https://github.com/TylerAndreasen/PySquares). The following are notes I want to keep throughout the project.
 
 ## Notes
 
