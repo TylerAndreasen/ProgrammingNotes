@@ -5,7 +5,9 @@ General Notes
 2. Classes and Structs - Classes in C# operate pretty much as expected, and are used in the same way that Java Classes are. Structure Types or Structs are intended to operate almost like JSON objects it seems. More complex than a String or a primitive, containing little to no functionality within it. The example given by Microsoft is a struct call Coords, which stores the doubles X and Y, and the overridden method ToString() which returns $"({X}, {Y})".
 	I could see this type being the basis for how multiple door puzzles function. Those puzzles which present to the player some number of levers and some number of doors, and flipping any lever will cause doors to open and close. And the puzzle being to determine the arrangement of levers to open all doors at once.
 
-3. Local Functions - I like these, they are quite interesting. A Local function is a function defined within a member (probably another method/function, but could be defined in a property I suppose), and is only callable in that method. This has several advantages, most boiling down to encapsulation, incorrect calling, and privacy.
+3. Local Functions - I like these, they are quite interesting. A Local function is a function defined within a member (probably another method/function, but could be defined in a property I suppose), and is only callable in that method. This has several advantages, most boiling down to encapsulation, incorrect calling, and privacy. On reflection, I assume they are not called lambdas for reasons of syntax and not scaring off language novices.
+
+4. Mouse Interactions - TODO
 
 Specific Items
 
