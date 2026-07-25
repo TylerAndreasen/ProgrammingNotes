@@ -1,6 +1,6 @@
 # RayLib: Basics
 
-I have been working with raylib for a few weeks now, and should really take some notes on the basics of how to use it. As implied, this is the basics of the framework, not the more advanced things I will need for future projects. This document is indented for 1. my future self when I take a break from raylib and come back confused about how things work and 2. others who have not used raylib before, have found this repo, and want to tutorial for how raylib works in a text form.
+I have been working with raylib for a few weeks now, and should really take some notes on the basics of how to use it. As implied, this is the basics of the framework, not the more advanced things I will need for future projects. This document is indented for 1. my future self when I take a break from raylib and come back confused about how things work and 2. others who have not used raylib before, have found this repo, and want a tutorial for how raylib works in a text form.
 
 NOTE:: This tutorial is written with the assumption that you have some experience with C++ and at least basic familiarity with 2D graphics conventions (namely the origin being in the top left corner and the positve axies being to the right and down). 
 
@@ -34,17 +34,20 @@ If the above code compiles and runs, then your install of raylib exists and is a
 The below is a minimum project to show that raylib not only compiles, but can create a window with graphics. Feel free to use this as a basis for your own projects, as you will need/want most every line in this code for any larger raylib project.
 
 ```c++
+#include <iostream>
 #include "raylib.h"
+using std::string;
 int main()
 {
-    std::string showText = "Hello Graphics!";
+    std::string defineText = "Hello Graphics!";
+    const char* showText = defineText.c_str();
     int fontSize = 40;
     int screenWide = 1920, screenHigh = 1080; //These are local variables, which will will assign to the window, not the names that raylib uses
 
     InitWindow(screenWide, screenHigh, showText);
     SetTargetFPS(60);
 
-    while(!WindowShouldClose())
+    while (!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(BLACK);
@@ -70,7 +73,7 @@ raylib is a huge library that I have just scratched the surface of. I will begin
 
 4. `BeginDrawing()` and `EndDrawing()` - These methods tell raylib that the functions that lay between them should all be rendered in one frame, and `EndDrawing()` (I assume) sends the pixel buffer within raylib to the OS that the program is running in. I have forgotten this line a time or two when building projects and was quite confused with nothing appeared. Equally important but not listed is the `#include "raylib.h"` that I have forgotten about as many times, though luckily not when I typed out the above example.
 
-5. `ClearBackground()` - This sets all pixles to have the color passed into the method, acting as a way to clear the buffer from the previous frame. Fun could be had with not doing this, and using shapes and opacity to get rid of past game states visually.
+5. `ClearBackground()` - This sets all pixles to have the color passed into the method, acting as a way to clear the buffer from the previous frame. Fun could be had with not doing this, and using shapes and opacity to get rid of past game states in a visually interesting manner, though is not typically desired.
 
 6. `DrawText()` - This method draws text to the screen. This is done by passing a string to the function, followed by the top left corner of where the text should appear, followed by the font size of the text, and the font color. Many if not all drawing methods in raylib use this strucutre, though few if any others include a leading string argument.
 

@@ -43,3 +43,6 @@ A Python Package is a collection of Modules combined with an `__init__.py` file.
 As a part of a group project, I was introduced to Python `__init__.py` files. I am not sure from a technical perspective what this does, but seems to group code into a package of some sort.
 
 The `__init__.py` file is used by Python to note that several modules are to be used as a Package. While this can be used to simply import all of the necessary submodules necessary for running the major elements, the `__init__.py` file is a full python file and can contain normal code. This code generally takes the form of importing submodules, setting up data for functionality, assign a Package version number, and more. 
+
+## Starting Other Programs
+

@@ -19,4 +19,6 @@ func _input(event):
 		add_child(new_ball)
 ---
 The above code is taken from the Bouncing Ball example provided by Godot. I am
-unsure if there is an intended way to read UI from methods other than _input(event), but I believe that I will need to redesign my input to try to look like this.
+unsure if there is an intended way to read UI from methods other than 
+_input(event), but I believe that I will need to redesign my input to try to
+look like this.
