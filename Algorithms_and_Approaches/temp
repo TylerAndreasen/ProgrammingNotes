@@ -1,0 +1,64 @@
+In a separate editor, I am working on implementing a prefix Boolean Expression Evaluation function in Lisp. The code I have functions, handling nested expressions and two (or one in the case of the not operator) operands. However, the implementation relies on the `listp` function, which is not in the list of existing functions that I am allowed to use for the project (full list of native functions and other function implemented by this project below). My question is about how to proceed. In theory, I may be able to use the existing functions to reimplement the functionality of `listp` to sidestep the issue. I am relatively new to Lisp, so there may also be approaches to the problem that I am not aware of. Please do not include a full code solution, but present important ideas and short code snippets when relevant.
+Allowed Functions:
+Native:
+    - T
+    - NIL
+    - IF
+    - WHEN
+    - COND
+    - NOT
+    - AND
+    - OR
+    - EQUAL
+    - CONS
+    - LIST
+    - CAR
+    - CDR
+    - FIRST
+    - SECOND
+    - THIRD
+    - LENGTH
+    - DEFUN
+    - LABELS
+    - LET
+    - LET*
+    - FUNCALL
+    - QUOTE
+    - any arithmetic operator or relation (+, -, *, /, <, <=, >, >=, =)
+    - any numerical constant
+Implemented by this project:
+    - (defun set-member (set item) ): Set contains item
+    - (defun set-union (set-1 set-2) ): Union of two sets
+    - (defun set-intersection (set-1 set-2) ): Intersection of two sets
+    - (defun set-diff (set-1 set-2) ): Difference of two sets
+    - (defun boolean-xor (a b) ): The exclusive or of a and b
+    - (defun boolean-implies (a b) ): Does a imply b
+    - (defun boolean-iff (a b) ): Bijection of a and b
+    - (defun merge-sort (list predicate) ): Sort a list using merge sort
+
+Response:
+Short answer: avoid needing listp by treating only T/NIL as atomic base cases and assuming any other well-formed input is a list (prefix expression). If you must detect lists, you’ll need language features your allowed list doesn’t expose (safe car/cdr, catch/throw or an atom/list primitive) — otherwise you end up relying on input validation.
+
+Ideas and small snippets
+
+Recommended approach: make your evaluator consider T and NIL as the only atomic values. Everything else is treated as a compound prefix expression. This keeps recursion simple and avoids calling a separate listp predicate.
+Notes:
+
+This assumes your inputs are well-formed prefix lists (or the literal booleans T/NIL). If an operand can be a symbol other than T/NIL (e.g., variables), you must add a lookup step for variables before assuming list structure.
+
+This approach avoids listp by using only EQUAL, FIRST/SECOND/THIRD, COND and recursion.
+
+If you really need a list predicate, the allowed primitives make it unsafe to implement a fully robust listp (calling CAR/FIRST or LENGTH on a non-list can error). A minimal heuristic is:
+
+Treat NIL as a list.
+Otherwise require your parser/producer to guarantee that anything that isn’t T/NIL is a list (so you never call CAR on an atom).
+Or add a light-weight validation phase (run only on inputs you control) that walks the structure once and rejects unexpected atoms — this phase can assume well-formed input too.
+Dispatch: you can simplify operator handling by mapping operator symbols to small local functions using LABELS and FUNCALL for clearer code and easier extension.
+
+// Code did not copy
+
+Trade-offs
+
+Pro: simplest and robust if inputs are validated/controlled.
+Con: brittle if evaluator must accept arbitrary atoms (then you need a safe, language-level guard like an atom/list predicate or exception handling, which you don’t have in the allowed set).
+If you want, tell me whether your inputs may contain variable symbols (not only T/NIL), and I’ll show a short validated-parser sketch that keeps the evaluator safe without using listp.
